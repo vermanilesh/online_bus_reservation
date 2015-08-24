@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 1.2'
 # for using devise
 gem 'devise'
 
+# Use debugger
+gem 'pry'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

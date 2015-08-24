@@ -1,8 +1,16 @@
 OnlineBusReservation::Application.routes.draw do
+  devise_for :agencies
+  get "sign_up/index"
+  get "sign_in/index"
+  get "welcome/dashboard"
   root 'welcome#index'
+  
   #get "welcome/index"
   
   devise_for :users
+
+
+
   #delete "devise/sessions#destroy"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

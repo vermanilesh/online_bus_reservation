@@ -1,0 +1,14 @@
+<p>Hi!!!! This is your dashboard</p>
+<% if user_signed_in? %>
+	
+	<%= link_to "Find Buses", welcome_dashboard_path %>
+	<%= link_to "Find Routes", welcome_dashboard_path %>
+	<%= link_to "Check Your Reservation", welcome_dashboard_path %>
+
+<% elsif agency_signed_in? %>
+
+	<%= link_to "Find Your Buses", welcome_dashboard_path %>
+	<%= link_to "Add More Buses", welcome_dashboard_path %>
+	<%= link_to "Add More Routes", welcome_dashboard_path %>
+
+<% end %>
