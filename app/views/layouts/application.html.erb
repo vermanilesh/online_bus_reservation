@@ -6,12 +6,16 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body style="background-color:#F8E6E0">
-	
-	
-	<%= yield %>
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
 
+<%= render "shared/header" %>
+
+<body style="background-color:#F8E6E0" >
+  <div class="row">
+  	<div class="col-md-6 col-md-offset-3">
+  		<%= yield %>
+  			<p class="notice"><%= notice %></p>
+  			<p class="alert"><%= alert %></p>	
+  	</div>
+  </div> 
 </body>
 </html>
