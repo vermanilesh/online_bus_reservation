@@ -1,8 +1,9 @@
 OnlineBusReservation::Application.routes.draw do
+  get "agencies/dashboard"
+  get "users/dashboard"
   devise_for :agencies
   get "welcome/sign_up"
   get "welcome/sign_in"
-  get "welcome/dashboard"
   root "welcome#index"
   
   #get "welcome/index"

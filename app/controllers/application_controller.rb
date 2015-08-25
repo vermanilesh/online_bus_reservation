@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   def after_sign_in_path_for(resource)
-  	welcome_dashboard_path
+  	if resource_name.capitalize.to_s == "User"
+  		users_dashboard_path
+  	elsif resource_name.capitalize.to_s == "Agency"
+  		agencies_dashboard_path
+  	end
   end
 end
