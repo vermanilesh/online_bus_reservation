@@ -1,0 +1,41 @@
+<%= form_for([current_agency, current_agency.buses.build]) do |f| %>
+  <% if @bus.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bus.errors.count, "error") %> prohibited this bus from being saved:</h2>
+
+      <ul>
+      <% @bus.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bus_type %><br>
+    <%= f.text_field :bus_type %>
+  </div>
+  <div class="field">
+    <%= f.label :seats %><br>
+    <%= f.number_field :seats %>
+  </div>
+  <div class="field">
+    <%= f.label :fare %><br>
+    <%= f.number_field :fare %>
+  </div>
+  <div class="field">
+    <%= f.label :departure_time %><br>
+    <%= f.time_select :departure_time %>
+  </div>
+  <div class="field">
+    <%= f.label :arrival_time %><br>
+    <%= f.time_select :arrival_time %>
+  </div>
+  <!-- <div class="field">
+    <%= f.label :agency %><br>
+    <%= f.text_field :agency_id %>
+  </div> -->
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

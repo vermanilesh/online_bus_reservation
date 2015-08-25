@@ -1,4 +1,9 @@
 OnlineBusReservation::Application.routes.draw do
+
+  resources :agency do
+    resources :buses
+  end
+
   get "agencies/dashboard"
   get "users/dashboard"
   devise_for :agencies

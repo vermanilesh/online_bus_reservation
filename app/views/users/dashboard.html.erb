@@ -1,2 +1,5 @@
-<h1>Users#dashboard</h1>
-<p>Find me in app/views/users/dashboard.html.erb</p>
+<h3>Welcome</h3>
+<h4> <%= render text: current_user.email %> </h4> </br>
+<%= link_to "Find Buses", users_dashboard_path %>
+<%= link_to "Find Routes", users_dashboard_path %>
+<%= link_to "Check Your Reservation", users_dashboard_path %>

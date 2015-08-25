@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824085228) do
+ActiveRecord::Schema.define(version: 20150825112018) do
 
   create_table "agencies", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -34,6 +34,19 @@ ActiveRecord::Schema.define(version: 20150824085228) do
 
   add_index "agencies", ["email"], name: "index_agencies_on_email", unique: true
   add_index "agencies", ["reset_password_token"], name: "index_agencies_on_reset_password_token", unique: true
+
+  create_table "buses", force: true do |t|
+    t.string   "bus_type"
+    t.integer  "seats"
+    t.integer  "fare"
+    t.time     "departure_time"
+    t.time     "arrival_time"
+    t.integer  "agency_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "buses", ["agency_id"], name: "index_buses_on_agency_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

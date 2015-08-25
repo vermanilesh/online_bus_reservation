@@ -1,0 +1,34 @@
+<h1>Listing buses</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Bus type</th>
+      <th>Seats</th>
+      <th>Fare</th>
+      <th>Departure time</th>
+      <th>Arrival time</th>
+      <th>Agency</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @buses.each do |bus| %>
+      <tr>
+        <td><%= bus.bus_type %></td>
+        <td><%= bus.seats %></td>
+        <td><%= bus.fare %></td>
+        <td><%= bus.departure_time %></td>
+        <td><%= bus.arrival_time %></td>
+        <td><%= bus.agency_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bus', new_agency_bus_path %>
