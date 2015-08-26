@@ -4,8 +4,14 @@ class BusesController < ApplicationController
   respond_to :html
 
   def index
-    @buses = current_agency.buses
-    respond_with(@buses)
+    if current_agency.present?
+      @buses = current_agency.buses
+      respond_with(@buses)  
+    else
+      flash[:alert] = "You must be logged in"
+      redirect_to new_agency_session_path      
+    end
+    
   end
 
   def show
@@ -28,12 +34,12 @@ class BusesController < ApplicationController
 
   def update
     @bus.update(bus_params)
-    respond_with(@bus)
+    respond_with(current_agency, @bus)
   end
 
   def destroy
     @bus.destroy
-    respond_with(@bus)
+    redirect_to agency_buses_path
   end
 
   private

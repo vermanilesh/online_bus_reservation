@@ -10,7 +10,7 @@
       </button>
       <% if user_signed_in? %>
         <a class="navbar-brand" href="/users/dashboard">Onlilne Bus Reservation</a>
-      <% elsif agency_signed_in? %>
+      <% elsif current_agency.present? %>
         <a class="navbar-brand" href="/agencies/dashboard">Onlilne Bus Reservation</a>
       <% else %>
         <a class="navbar-brand" href="/">Onlilne Bus Reservation</a>

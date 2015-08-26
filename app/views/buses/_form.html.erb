@@ -1,4 +1,4 @@
-<%= form_for([current_agency, current_agency.buses.build]) do |f| %>
+<%= form_for([current_agency, @bus]) do |f| %>
   <% if @bus.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@bus.errors.count, "error") %> prohibited this bus from being saved:</h2>
@@ -12,8 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :bus_type %><br>
-    <%= f.text_field :bus_type %>
+    <div class="form-group">
+    <label class="control-label">Bus Type</label>
+      <div class="controls">
+        <select>
+          <option value="1">AC</option>
+          <option value="2">Non-AC</option>
+          <option value="3">Sleeper</option>
+          <option value="3">AC-Sleeper</option>
+          <option value="3">Non-AC-Sleeper</option>
+        </select>
+      </div>
+    </div>
   </div>
   <div class="field">
     <%= f.label :seats %><br>
@@ -31,11 +41,8 @@
     <%= f.label :arrival_time %><br>
     <%= f.time_select :arrival_time %>
   </div>
-  <!-- <div class="field">
-    <%= f.label :agency %><br>
-    <%= f.text_field :agency_id %>
-  </div> -->
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <%= f.submit class: "btn btn-primary" %>
+  <%= link_to "Back", agencies_dashboard_path, class: "btn btn-info" %>
 <% end %>
+
