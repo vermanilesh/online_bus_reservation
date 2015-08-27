@@ -14,23 +14,8 @@
       </p>
 
       <p>
-        <strong>Fare:</strong>
-        <%= @bus.fare %>
-      </p>
-
-      <p>
-        <strong>Departure time:</strong>
-        <%= @bus.departure_time %>
-      </p>
-
-      <p>
-        <strong>Arrival time:</strong>
-        <%= @bus.arrival_time %>
-      </p>
-
-      <p>
-        <strong>Agency:</strong>
-        <%= @bus.agency_id %>
+        <strong>Registration Number:</strong>
+        <%= @bus.registration_number %>
       </p>
 
       <%= link_to 'Edit', edit_agency_bus_path(current_agency, @bus), class: "btn btn-success"%>
