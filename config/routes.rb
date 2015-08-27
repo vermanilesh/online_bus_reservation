@@ -1,5 +1,6 @@
 OnlineBusReservation::Application.routes.draw do
 
+  resources :routes
   resources :agency do
     resources :buses
   end

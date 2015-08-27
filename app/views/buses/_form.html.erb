@@ -11,20 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <div class="form-group">
-    <label class="control-label">Bus Type</label>
-      <div class="controls">
-        <select>
-          <option value="1">AC</option>
-          <option value="2">Non-AC</option>
-          <option value="3">Sleeper</option>
-          <option value="3">AC-Sleeper</option>
-          <option value="3">Non-AC-Sleeper</option>
-        </select>
-      </div>
-    </div>
+  <div class="input-group">
+    <%= f.label :bus_type %> </br>
+    <%= f.select(:bus_type, options_for_select([['AC', "AC"], ['NON-AC', "NON-AC"], ['AC-SLEEPER', "AC-SLEEPER"], ['NON-AC-SLEEPER', "NON-AC-SLEPPER"], ['NON-AC-SLEEPER', "NON-AC-SLEPPER"]]), {}, {class: "form-control"}) %>
   </div>
+
   <div class="field">
     <%= f.label :seats %><br>
     <%= f.number_field :seats %>
@@ -33,7 +24,7 @@
     <%= f.label :Registration_Number %><br>
     <%= f.text_field :registration_number %>
   </div>
-  <%= f.submit class: "btn btn-primary" %>
-  <%= link_to "Back", agencies_dashboard_path, class: "btn btn-info" %>
+  <%= f.submit class: "btn btn-info" %>
+  <%= link_to "Back", agency_buses_path, class: "btn btn-info" %>
 <% end %>
 

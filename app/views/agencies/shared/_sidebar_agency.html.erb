@@ -13,13 +13,13 @@
 	</div>
 </div>  -->
 
-<div class="row">
-	<div class="col-md-3">	
-		<ul class="nav nav-sidebar">
-			<li><%= link_to "Buses", agency_buses_path(current_agency) %></li>
-			<li><%= link_to "Profile", agency_buses_path(current_agency) %></li>
-			<li><a href="#sec2">Routes</a></li>
-			<li><a href="#sec3">Schedule</a></li>
-			<li><a href="#sec4">Section</a></li>
-		</ul>
-	</div>
+	<div class="row">
+		<div class="col-md-3" id="leftCol" style="background-color:#81DAF5">	
+			<ul class="nav nav-sidebar" id="sidebar">
+				<li><%= link_to "Buses", agency_buses_path(current_agency) %></li>
+				<li><%= link_to "Routes", routes_path %></li>
+				<li><a href="#sec2">Routes</a></li>
+				<li><a href="#sec3">Schedule</a></li>
+				<li><a href="#sec4">Section</a></li>
+			</ul>
+		</div>

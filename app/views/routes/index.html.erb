@@ -1,0 +1,35 @@
+<div class="container">
+  <%= render "agencies/shared/sidebar_agency" %>
+  
+    <div class="col-md-7">
+      <h1>Listing All Routes</h1>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>From Station</th>
+            <th>To Station</th>
+            <th>Distance</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @routes.each do |route| %>
+          <tr>
+            <td><%= route.from_station %></td>
+            <td><%= route.to_station %></td>
+            <td><%= route.distance %></td>
+            <td><%= link_to "Edit", edit_route_path(route), class: "btn btn-default" %>
+            </td>
+            <td><%= link_to "Delete", route_path(route), method: :delete, data: {confirm: "Are you sure? want to delete this Route"}, class: "btn btn-danger" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-2">
+      <%= link_to "Add Route", new_route_path, class: "btn btn-info" %>
+    </div>
+  </div>
+</div>  

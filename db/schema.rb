@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827053144) do
+ActiveRecord::Schema.define(version: 20150827115341) do
 
   create_table "agencies", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -42,9 +42,19 @@ ActiveRecord::Schema.define(version: 20150827053144) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "registration_number"
+    t.integer  "route_id"
   end
 
   add_index "buses", ["agency_id"], name: "index_buses_on_agency_id"
+  add_index "buses", ["route_id"], name: "index_buses_on_route_id"
+
+  create_table "routes", force: true do |t|
+    t.string   "from_station"
+    t.string   "to_station"
+    t.integer  "distance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

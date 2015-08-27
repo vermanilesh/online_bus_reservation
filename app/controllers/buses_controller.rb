@@ -28,17 +28,22 @@ class BusesController < ApplicationController
 
   def create
     @bus = current_agency.buses.new(bus_params)
-    @bus.save
+    if @bus.save!
+      flash[:alert] = "new Bus added"
+    end
     respond_with(current_agency, @bus)
   end
 
   def update
-    @bus.update(bus_params)
+    if @bus.update!(bus_params)
+      flash[:alert] = "Bus Updated"
+    end
     respond_with(current_agency, @bus)
   end
 
   def destroy
     @bus.destroy
+    flash[:alert] = "Bus Deleted"
     redirect_to agency_buses_path
   end
 
