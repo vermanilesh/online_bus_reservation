@@ -29,7 +29,7 @@ class BusesController < ApplicationController
   def create
     @bus = current_agency.buses.new(bus_params)
     @bus.save
-    redirect_to agency_buses_path
+    respond_with(current_agency, @bus)
   end
 
   def update
