@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <%= render "agencies/shared/sidebar_agency" %>
+    <div class="col-md-7">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>From:</strong>
+        <%= @route.from_station %>
+      </p>
+
+      <p>
+        <strong>To:</strong>
+        <%= @route.to_station %>
+      </p>
+
+      <p>
+        <strong>Distance:</strong>
+        <%= @route.distance %>
+      </p>
+
+      <%= link_to 'Edit', edit_agency_route_path(current_agency, @route), class: "btn btn-info"%>
+      <%= link_to 'Back to Route List', agency_routes_path, class: "btn btn-info" %>
+    </div>
+  </div>
+</div>

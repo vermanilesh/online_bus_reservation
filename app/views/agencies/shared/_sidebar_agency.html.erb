@@ -16,7 +16,6 @@
 <!-- <div class="col-md-3" id="leftCol">
 	<ul class="nav nav-stacked" id="sidebar">
 		<li><%= link_to "Buses", agency_buses_path(current_agency) %></li>
-		<li><%= link_to "Routes", routes_path %></li>
 		<li><a href="#sec2">Routes</a></li>
 		<li><a href="#sec3">Schedule</a></li>
 		<li><a href="#sec4">Section</a></li>
@@ -30,6 +29,9 @@
 	 		<ul class="nav list-group">
 	 			<li>
 	 				<%= link_to "Buses", agency_buses_path(current_agency), class: "list-group-item"%>
+	 			</li>
+	 			<li>
+	 				<%= link_to "Routes", agency_routes_path(current_agency), class: "list-group-item"%>
 	 			</li>
 	 			<li>
 	 				<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 3</a>

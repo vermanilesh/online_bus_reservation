@@ -15,23 +15,23 @@ class RoutesController < ApplicationController
   end
 
   def show
+    respond_with(@route)
   end
 
   def new
-  	@route = Route.new
+  	@route = current_agency.routes.new
     respond_with(@route)
   end
 
   def edit
-  	@route = Route.find(params[:id])
   end
 
   def create
-  	@route = Route.new(route_params)
+  	@route = current_agency.routes.new(route_params)
   	if @route.save
       flash[:alert] = "New Route Added"
     end
-    respond_with(@route)
+    respond_with(current_agency, @route)
   end
 
   def update
@@ -39,14 +39,13 @@ class RoutesController < ApplicationController
   	if @route.update(route_params)
   		flash[:alert] = "Route Updated"	
   	end
-  	redirect_to routes_path
+  	respond_with(current_agency, @route)
   end
 
   def destroy
-  	@route = Route.find(params[:id])
   	@route.destroy
-  	flash[:alert] = "Route Deletd"
-  	redirect_to routes_path
+    flash[:alert] = "Route Deleted"
+    redirect_to agency_routes_path
   end
 
   private
