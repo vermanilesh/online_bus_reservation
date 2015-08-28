@@ -1,4 +1,5 @@
 class BusesController < ApplicationController
+  before_action :authenticate_agency!
   before_action :set_bus, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -28,14 +29,14 @@ class BusesController < ApplicationController
 
   def create
     @bus = current_agency.buses.new(bus_params)
-    if @bus.save!
+    if @bus.save
       flash[:alert] = "new Bus added"
     end
     respond_with(current_agency, @bus)
   end
 
   def update
-    if @bus.update!(bus_params)
+    if @bus.update(bus_params)
       flash[:alert] = "Bus Updated"
     end
     respond_with(current_agency, @bus)

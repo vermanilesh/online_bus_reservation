@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  departure_time: 2015-08-28 17:18:24
+  arrival_time: 2015-08-28 17:18:24
+  fare: 1
+  references: 
+
+two:
+  departure_time: 2015-08-28 17:18:24
+  arrival_time: 2015-08-28 17:18:24
+  fare: 1
+  references: 

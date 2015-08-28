@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827115341) do
+ActiveRecord::Schema.define(version: 20150828122837) do
 
   create_table "agencies", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -35,6 +35,24 @@ ActiveRecord::Schema.define(version: 20150827115341) do
   add_index "agencies", ["email"], name: "index_agencies_on_email", unique: true
   add_index "agencies", ["reset_password_token"], name: "index_agencies_on_reset_password_token", unique: true
 
+  create_table "agencies_routes", force: true do |t|
+    t.integer "agency_id"
+    t.integer "route_id"
+  end
+
+  add_index "agencies_routes", ["agency_id"], name: "index_agencies_routes_on_agency_id"
+  add_index "agencies_routes", ["route_id"], name: "index_agencies_routes_on_route_id"
+
+  create_table "agency_routes", force: true do |t|
+    t.integer  "agency_id"
+    t.integer  "route_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "agency_routes", ["agency_id"], name: "index_agency_routes_on_agency_id"
+  add_index "agency_routes", ["route_id"], name: "index_agency_routes_on_route_id"
+
   create_table "buses", force: true do |t|
     t.string   "bus_type"
     t.integer  "seats"
@@ -52,6 +70,18 @@ ActiveRecord::Schema.define(version: 20150827115341) do
     t.string   "from_station"
     t.string   "to_station"
     t.integer  "distance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "agency_id"
+  end
+
+  add_index "routes", ["agency_id"], name: "index_routes_on_agency_id"
+
+  create_table "schedules", force: true do |t|
+    t.time     "departure_time"
+    t.time     "arrival_time"
+    t.integer  "fare"
+    t.integer  "agency_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

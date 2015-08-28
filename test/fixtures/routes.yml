@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  departure_station: MyString
+  arrival_station: MyString
+  distance: 1
+
+two:
+  departure_station: MyString
+  arrival_station: MyString
+  distance: 1
