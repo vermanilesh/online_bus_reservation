@@ -1,21 +1,15 @@
 class RoutesController < ApplicationController
   before_action :authenticate_agency!
   before_action :set_routes, only: [:show, :edit, :update, :destroy]
+  layout "sidebar_layout"
 
   respond_to :html
   
   def index
-    if agency_signed_in?
-      @routes = current_agency.routes
-      respond_with(@routes)
-    else
-      flash[:error] = "you must be log in first"
-      redirect_to new_agency_session_path
-    end
+    @routes = current_agency.routes
   end
 
   def show
-    respond_with(@route)
   end
 
   def new
@@ -35,7 +29,6 @@ class RoutesController < ApplicationController
   end
 
   def update
-  	@route = Route.find(params[:id])
   	if @route.update(route_params)
   		flash[:alert] = "Route Updated"	
   	end
@@ -50,7 +43,7 @@ class RoutesController < ApplicationController
 
   private
     def set_routes
-      @route = Route.find(params[:id])
+      @route = current_agency.routes.find(params[:id])
     end
     
     def route_params

@@ -1,0 +1,36 @@
+<div class="col-md-7">
+
+  <p>
+    <strong>Schedule Id:</strong>
+    <%= @schedule.id %>
+  </p>
+
+  <p>
+    <strong>From:</strong>
+    <%= @schedule.route.from_station %>
+  </p>
+
+  <p>
+    <strong>To:</strong>
+    <%= @schedule.route.to_station %>
+  </p>
+
+  <p>
+    <strong>Fare:</strong>
+    <%= @schedule.fare %>
+  </p>
+
+  <p>
+    <strong>Departure at:</strong>
+    <%= @schedule.departure_time %>
+  </p>
+
+  <p>
+    <strong>Arrival at:</strong>
+    <%= @schedule.arrival_time %>
+  </p>
+
+
+  <%= link_to 'Edit', edit_agency_schedule_path(current_agency, @schedule), class: "btn btn-info"%>
+  <%= link_to 'Back to Schedule List', agency_schedules_path, class: "btn btn-info" %>
+</div>

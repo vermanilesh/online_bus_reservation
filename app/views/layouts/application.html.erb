@@ -2,13 +2,15 @@
 <html>
 <head>
   <title>OnlineBusReservation</title>
+  
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <%= render "shared/header" %>
+  <%= render "shared/flash_messages", flash: flash %>
+
 </head>
 
-<%= render "shared/header" %>
-<%= render "shared/flash_messages", flash: flash %>
 
 <body style="background-color:#F8E6E0" >
   <%= yield %>

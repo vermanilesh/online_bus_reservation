@@ -1,0 +1,45 @@
+<%= form_for([current_agency, @schedule]) do |f| %>
+  <% if @schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+
+      <ul>
+      <% @schedule.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :departure_time %><br>
+    <%= f.time_select :departure_time, {:ampm => true} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :arrival_time %><br>
+    <%= f.time_select :arrival_time, {:ampm => true} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fare %><br>
+    <%= f.number_field :fare %>
+  </div>
+
+  <div class="field">
+    <%= f.label :route %><br>
+    <% routes_array = current_agency.routes.map { |route| [route.route_name, route.id] } %>
+    <%= f.select(:route_id, options_for_select(routes_array) ) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Bus_Number %><br>
+    <% buses_array = current_agency.buses.map { |bus| [bus.registration_number, bus.id] } %>
+    <%= f.select(:bus_number, options_for_select(buses_array) ) %>
+  </div>
+
+  <%= f.submit class: "btn btn-info" %>
+  <%= link_to "Back", agency_schedules_path, class: "btn btn-info" %>
+  
+<% end %>
+

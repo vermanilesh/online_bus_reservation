@@ -1,54 +1,29 @@
-<!-- <div class="container">
-	<div class="row">
-		left-->
-		<!-- <div class="col-md-3" id="leftCol">
-			<ul class="nav nav-stacked" id="sidebar">
-				<li><%= link_to "Buses", agency_buses_path(current_agency) %></li>
-				<li><a href="#sec1">Section 1</a></li>
-				<li><a href="#sec2">Section 2</a></li>
-				<li><a href="#sec3">Section 3</a></li>
-				<li><a href="#sec4">Section 4</a></li>
-			</ul>
-		</div>
-	</div>
-</div>  -->
-
-<!-- <div class="col-md-3" id="leftCol">
-	<ul class="nav nav-stacked" id="sidebar">
-		<li><%= link_to "Buses", agency_buses_path(current_agency) %></li>
-		<li><a href="#sec2">Routes</a></li>
-		<li><a href="#sec3">Schedule</a></li>
-		<li><a href="#sec4">Section</a></li>
-	</ul>
-</div>
- -->
-
 <div class="wrapper">
 	<div id="sidebar-wrapper" class="col-md-3">
-	 	<div id="sidebar">
-	 		<ul class="nav list-group">
-	 			<li>
-	 				<%= link_to "Buses", agency_buses_path(current_agency), class: "list-group-item"%>
-	 			</li>
-	 			<li>
-	 				<%= link_to "Routes", agency_routes_path(current_agency), class: "list-group-item"%>
-	 			</li>
-	 			<li>
-	 				<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 3</a>
-	 			</li>
-	 			<li>
-	 				<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 4</a>
-	 			</li>
-	 			<li>
-	 				<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 5</a>
-	 			</li>
-	 			<li>
-	 				<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 6</a>
-	 			</li>
-	 			<li>
-	 				<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 7</a>
-	 			</li>
-	 		</ul>
-	 	</div>
+		<div id="sidebar">
+			<ul class="nav list-group">
+				<li>
+					<%= link_to "Buses", agency_buses_path(current_agency), class: "list-group-item"%>
+				</li>
+				<li>
+					<%= link_to "Routes", agency_routes_path(current_agency), class: "list-group-item"%>
+				</li>
+				<li>
+					<%= link_to "Schedules", agency_schedules_path(current_agency), class: "list-group-item"%>
+				</li>
+				<li>
+					<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 4</a>
+				</li>
+				<li>
+					<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 5</a>
+				</li>
+				<li>
+					<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 6</a>
+				</li>
+				<li>
+					<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 7</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>

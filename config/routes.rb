@@ -1,9 +1,11 @@
 OnlineBusReservation::Application.routes.draw do
 
   
+  get "schedules/index"
   resources :agency do
     resources :buses
     resources :routes
+    resources :schedules
   end
 
   get "agencies/dashboard"

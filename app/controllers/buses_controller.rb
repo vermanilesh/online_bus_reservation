@@ -1,18 +1,12 @@
 class BusesController < ApplicationController
   before_action :authenticate_agency!
   before_action :set_bus, only: [:show, :edit, :update, :destroy]
+  layout "sidebar_layout"
 
   respond_to :html
 
   def index
-    if current_agency.present?
-      @buses = current_agency.buses
-      respond_with(@buses)  
-    else
-      flash[:alert] = "You must be logged in"
-      redirect_to new_agency_session_path      
-    end
-    
+    @buses = current_agency.buses
   end
 
   def show
@@ -50,7 +44,7 @@ class BusesController < ApplicationController
 
   private
     def set_bus
-      @bus = Bus.find(params[:id])
+      @bus = current_agency.buses.find(params[:id])
     end
 
     def bus_params

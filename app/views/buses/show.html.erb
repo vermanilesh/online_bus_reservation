@@ -1,26 +1,21 @@
-<div class="container">
-  <div class="row">
-    <%= render "agencies/shared/sidebar_agency" %>
-    <div class="col-md-7">
-      <p id="notice"><%= notice %></p>
+<div class="col-md-7">
+  <p id="notice"><%= notice %></p>
 
-      <p>
-        <strong>Bus type:</strong>
-        <%= @bus.bus_type %>
-      </p>
+  <p>
+    <strong>Bus type:</strong>
+    <%= @bus.bus_type %>
+  </p>
 
-      <p>
-        <strong>Seats:</strong>
-        <%= @bus.seats %>
-      </p>
+  <p>
+    <strong>Seats:</strong>
+    <%= @bus.seats %>
+  </p>
 
-      <p>
-        <strong>Registration Number:</strong>
-        <%= @bus.registration_number %>
-      </p>
+  <p>
+    <strong>Registration Number:</strong>
+    <%= @bus.registration_number %>
+  </p>
 
-      <%= link_to 'Edit', edit_agency_bus_path(current_agency, @bus), class: "btn btn-info"%>
-      <%= link_to 'Back to Bus List', agency_buses_path, class: "btn btn-info" %>
-    </div>
-  </div>
+  <%= link_to 'Edit', edit_agency_bus_path(current_agency, @bus), class: "btn btn-info"%>
+  <%= link_to 'Back to Bus List', agency_buses_path, class: "btn btn-info" %>
 </div>

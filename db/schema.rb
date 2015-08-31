@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828122837) do
+ActiveRecord::Schema.define(version: 20150831095321) do
 
   create_table "agencies", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -84,7 +84,12 @@ ActiveRecord::Schema.define(version: 20150828122837) do
     t.integer  "agency_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bus_number"
+    t.string   "route"
+    t.integer  "route_id"
   end
+
+  add_index "schedules", ["route_id"], name: "index_schedules_on_route_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
