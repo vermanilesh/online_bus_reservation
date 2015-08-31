@@ -3,4 +3,5 @@ class Bus < ActiveRecord::Base
 	validates :registration_number, uniqueness: true
   belongs_to :agency
   belongs_to :route
+  has_many :schedule
 end
