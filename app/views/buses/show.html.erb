@@ -16,6 +16,13 @@
     <%= @bus.registration_number %>
   </p>
 
+  <p>
+    <strong>Bus Image:</strong>
+  </p>
+  <p>
+    <%= image_tag(@bus.avatar.url, size: "400x400")  %>
+  </p>  
+
   <%= link_to 'Edit', edit_agency_bus_path(current_agency, @bus), class: "btn btn-info"%>
   <%= link_to 'Back to Bus List', agency_buses_path, class: "btn btn-info" %>
 </div>

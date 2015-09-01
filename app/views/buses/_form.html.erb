@@ -26,6 +26,11 @@
     <%= f.text_field :registration_number %>
   </div>
 
+  <div class="field">
+    <%= f.label :Upload_image %><br>
+    <%= f.file_field :avatar, as: :file %>
+  </div>
+
   <%= f.submit class: "btn btn-info" %>
   <%= link_to "Back", agency_buses_path, class: "btn btn-info" %>
   

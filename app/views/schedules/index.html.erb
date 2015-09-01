@@ -17,18 +17,28 @@
       <% @schedules.each do |schedule| %>
       <tr>
         <td><%= schedule.id %></td>
+
         <td><%= schedule.route.route_name %></td>
-        <td><%= Bus.select("registration_number").where(id:  Schedule.last.bus_number.to_i) %></td>
+        
+        <td><%= Bus.where(id:  schedule.bus_number.to_i).pluck(:registration_number)[0] %></td>
+        
         <td><%= schedule.fare %></td>
+        
         <td><%= schedule.departure_time.hour.to_s + ":" + schedule.departure_time.min.to_s %></td>
+        
         <td><%= schedule.arrival_time.hour.to_s + ":" + schedule.arrival_time.min.to_s %></td>
+        
         <td><%= link_to "Edit", "/agency/#{current_agency.id}/schedules/#{schedule.id}/edit", class: "btn btn-default" %></td>
+        
         <td> <%= link_to "Delete", agency_schedule_path(current_agency, schedule), method: :delete, data: {confirm: "Are you sure? want to delete schedule"}, class: "btn btn-danger"  %> </td>
       </tr>
+      
       <% end %>
     </tbody>
+  
   </table>
 </div>
+
 <div class="col-md-2">
   <%= link_to "Add schedule", new_agency_schedule_path(current_agency), class: "btn btn-info" %>
 </div>

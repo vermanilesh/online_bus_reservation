@@ -33,6 +33,12 @@ gem 'devise'
 # Use debugger
 gem 'pry'
 
+#use file upload
+gem 'carrierwave'
+
+#using image versions
+gem 'mini_magick'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

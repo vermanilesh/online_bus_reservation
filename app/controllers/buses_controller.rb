@@ -42,12 +42,15 @@ class BusesController < ApplicationController
     redirect_to agency_buses_path
   end
 
+
+
   private
     def set_bus
       @bus = current_agency.buses.find(params[:id])
     end
 
     def bus_params
-      params.require(:bus).permit(:bus_type, :seats, :agency_id, :registration_number)
+      params.require(:bus).permit(:bus_type, :seats, :agency_id, :registration_number, :avatar)
     end
+
 end
