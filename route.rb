@@ -5,6 +5,6 @@ class Route < ActiveRecord::Base
 	belongs_to :agencies
 
 	def route_name
-		"from #{from_station} to #{to_station}"
+		"#{from_station}->#{to_station}"
 	end
 end
