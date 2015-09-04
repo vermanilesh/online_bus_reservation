@@ -22,12 +22,19 @@
 
   <p>
     <strong>Departure at:</strong>
-    <%= @schedule.departure_time %>
+    <%= @schedule.departure_time.hour.to_s + ":" + @schedule.departure_time.min.to_s %>
   </p>
 
   <p>
     <strong>Arrival at:</strong>
-    <%= @schedule.arrival_time %>
+    <%= @schedule.arrival_time.hour.to_s + ":" + @schedule.arrival_time.min.to_s %>
+  </p>
+
+  <p>
+    <strong>Days:</strong>
+    <% @schedule.days.each do |day| %>
+      <%= day.titleize %> 
+    <% end %>
   </p>
 
 

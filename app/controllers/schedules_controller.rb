@@ -7,6 +7,10 @@ class SchedulesController < ApplicationController
 
   def index
   	@schedules = current_agency.schedules
+    if @schedules.blank?
+      flash[:notice] = "There is no Schedule in your account, please add it first "
+      redirect_to new_agency_schedule_path(current_agency)
+    end
   end
 
   def new
@@ -44,6 +48,6 @@ class SchedulesController < ApplicationController
     @schedule = current_agency.schedules.find(params[:id])
   end
 	def schedule_params
-    params.require(:schedule).permit(:departure_time, :arrival_time, :fare, :route_id, :bus_number)
+    params.require(:schedule).permit(:departure_time, :arrival_time, :fare, :route_id, :bus_number, :days_mask)
   end
 end

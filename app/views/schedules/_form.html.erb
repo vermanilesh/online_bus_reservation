@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= f.label :departure_time %><br>
-    <%= f.time_select :departure_time, {:ampm => true} %>
+    <%= f.time_select :departure_time, :default => Time.now, :ampm => true %>
   </div>
 
   <div class="field">
     <%= f.label :arrival_time %><br>
-    <%= f.time_select :arrival_time, {:ampm => true} %>
+    <%= f.time_select :arrival_time, :default => Time.now, :ampm => true %>
   </div>
 
   <div class="field">
@@ -38,8 +38,19 @@
     <%= f.select(:bus_number, options_for_select(buses_array) ) %>
   </div>
 
+
+
+  <p>
+    <%= f.label :days %><br />
+    <% for day in Schedule::DAYS %>
+      <%= check_box_tag "schedule[days][]", day, @schedule.days.include?(day) %>
+      <%=h day.humanize %><br />
+    <% end %>
+    <%= hidden_field_tag "schedule[days][]", "" %>
+  </p>
+
+
   <%= f.submit class: "btn btn-info" %>
   <%= link_to "Back", agency_schedules_path, class: "btn btn-info" %>
   
 <% end %>
-

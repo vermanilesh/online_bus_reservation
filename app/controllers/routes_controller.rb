@@ -7,6 +7,10 @@ class RoutesController < ApplicationController
   
   def index
     @routes = current_agency.routes
+    if @routes.blank?
+      flash[:notice] = "There is no Route in your account, please add it first "
+      redirect_to new_agency_route_path(current_agency)
+    end
   end
 
   def show

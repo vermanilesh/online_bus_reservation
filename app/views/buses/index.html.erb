@@ -1,5 +1,5 @@
 <div class="col-md-7">
-<h1>Listing Buses</h1>
+  <h1>Listing Buses</h1>
 
   <table class="table table-bordered">
     <thead>
@@ -13,14 +13,14 @@
 
     <tbody>
       <% @buses.each do |bus| %>
-      <tr>
+      <tr align="center">
         <td><%= bus.bus_type %></td>
 
         <td><%= bus.seats %></td>
         
         <td><%= bus.registration_number %></td>
         
-        <td> <%= image_tag(bus.avatar.url, size: "50x50")  %> </td>
+        <td> <%= image_tag(bus.avatar.url, size: "80x50")  %> </td>
         
         <td><%= link_to "Edit", "/agency/#{current_agency.id}/buses/#{bus.id}/edit", class: "btn btn-default" %></td>
         
@@ -30,6 +30,7 @@
     </tbody>
   </table>
 </div>
+
 <div class="col-md-2">
   <%= link_to "Add Bus", new_agency_bus_path(current_agency), class: "btn btn-info" %>
 </div>

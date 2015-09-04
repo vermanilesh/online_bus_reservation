@@ -24,9 +24,11 @@
         <% if current_user.present? %>
           <li><%= link_to "#{current_user.email}", users_dashboard_path %></li>
           <li> <%= link_to "Sign out", destroy_user_session_path %></li>
+
         <% elsif agency_signed_in?%>
           <li><%= link_to "#{current_agency.email}", agencies_dashboard_path %></li>
           <li> <%= link_to "Sign out", destroy_agency_session_path %></li>
+        
         <% else %>
           <li><%= link_to "Sign in", welcome_sign_in_path %></li>
           <li><%= link_to "Sign up", welcome_sign_up_path %></li>

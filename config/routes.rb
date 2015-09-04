@@ -1,6 +1,7 @@
 OnlineBusReservation::Application.routes.draw do
 
   
+  ActiveAdmin.routes(self)
   get "schedules/index"
   resources :agency do
     resources :buses

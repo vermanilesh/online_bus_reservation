@@ -1,5 +1,5 @@
 class BusesController < ApplicationController
-  before_action :authenticate_agency!
+  #before_action :authenticate_agency!
   before_action :set_bus, only: [:show, :edit, :update, :destroy]
   layout "sidebar_layout"
 
@@ -7,6 +7,10 @@ class BusesController < ApplicationController
 
   def index
     @buses = current_agency.buses
+    if @buses.blank?
+      flash[:notice] = "There is no Bus in your account, please add it first "
+      redirect_to new_agency_bus_path(current_agency)
+    end
   end
 
   def show

@@ -39,6 +39,9 @@ gem 'carrierwave'
 #using image versions
 gem 'mini_magick'
 
+#For Active Admin
+gem 'activeadmin' , github: 'activeadmin'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
