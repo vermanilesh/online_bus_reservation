@@ -1,6 +1,10 @@
 class BusesController < ApplicationController
-  #before_action :authenticate_agency!
+
+  before_action :authenticate_agency!
   before_action :set_bus, only: [:show, :edit, :update, :destroy]
+  
+  load_and_authorize_resource
+
   layout "sidebar_layout"
 
   respond_to :html

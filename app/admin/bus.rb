@@ -15,12 +15,12 @@ ActiveAdmin.register Bus do
 #   permitted
 # end
 
-	index do
-		column :id
-		column :registration_number
-		column :bus_type
-		column :seats
-	end
+	# index do
+	# 	column :id
+	# 	column :registration_number
+	# 	column :bus_type
+	# 	column :seats
+	# end
 
 
 end

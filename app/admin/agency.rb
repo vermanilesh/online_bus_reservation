@@ -15,11 +15,11 @@ ActiveAdmin.register Agency do
 #   permitted
 # end
 
-	index do
-		selectable_column
-		id_column
-		column :email
-	end
+	# index do
+	# 	selectable_column
+	# 	id_column
+	# 	column :email
+	# end
 
 	filter :email
 	filter :id

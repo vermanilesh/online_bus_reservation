@@ -1,25 +1,36 @@
 class SchedulesController < ApplicationController
-  before_action :authenticate_agency!
+
+  before_action :authenticate_agency!, except: :index
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+
+  load_and_authorize_resource 
+  
   layout "sidebar_layout"
 
   respond_to :html
 
   def index
-  	@schedules = current_agency.schedules
-    if @schedules.blank?
-      flash[:notice] = "There is no Schedule in your account, please add it first "
-      redirect_to new_agency_schedule_path(current_agency)
+    if agency_signed_in?
+    	@schedules = current_agency.schedules
+      if @schedules.blank?
+        flash[:notice] = "There is no Schedule in your account, please add it first "
+        redirect_to new_agency_schedule_path(current_agency)
+      end
+    else
+      @schedules = Schedule.all
     end
   end
+
 
   def new
   	@schedule = current_agency.schedules.new
   	respond_with(@schedule)
   end
 
+
   def edit
   end
+
 
 	def create
 		@schedule = current_agency.schedules.new(schedule_params)
@@ -29,6 +40,7 @@ class SchedulesController < ApplicationController
     respond_with(current_agency, @schedule)  
 	end  
 
+
   def update
     if @schedule.update(schedule_params)
       flash[:alert] = "Schedule Edited Succefully"
@@ -36,11 +48,13 @@ class SchedulesController < ApplicationController
     respond_with(current_agency, @schedule)
   end
 
+
   def destroy
     @schedule.destroy
     flash[:alert] = "One Schedule Deleted"
     redirect_to agency_schedules_path
   end
+
 
 	private
 

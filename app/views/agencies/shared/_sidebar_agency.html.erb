@@ -5,21 +5,31 @@
 				<li>
 					<%= link_to "Buses", agency_buses_path(current_agency), class: "list-group-item"%>
 				</li>
+
 				<li>
 					<%= link_to "Routes", agency_routes_path(current_agency), class: "list-group-item"%>
 				</li>
+
 				<li>
-					<%= link_to "Schedules", agency_schedules_path(current_agency), class: "list-group-item"%>
+					<%if can? :manage, Schedule %>
+						<%= link_to "Schedules", agency_schedules_path(current_agency), class: "list-group-item"%>
+					<% else %>
+						<%= link_to "Schedules", schedules_index_path, class: "list-group-item"%>	
+					<%end%>	
 				</li>
+
 				<li>
 					<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 4</a>
 				</li>
+
 				<li>
 					<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 5</a>
 				</li>
+
 				<li>
 					<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 6</a>
 				</li>
+				
 				<li>
 					<a class="list-group-item" href="#"><i class="icon-home icon-1x"></i>Sidebar Item 7</a>
 				</li>
