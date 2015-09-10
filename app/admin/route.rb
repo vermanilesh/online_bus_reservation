@@ -1,11 +1,9 @@
 ActiveAdmin.register Route do
 
-	menu parent: "Agency"
-
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-  permit_params :from_station, :to_station, :distance
+# permit_params :list, :of, :attributes, :on, :model
 #
 # or
 #

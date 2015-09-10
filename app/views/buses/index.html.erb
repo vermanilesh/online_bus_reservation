@@ -12,20 +12,25 @@
     </thead>
 
     <tbody>
-      <% @buses.each do |bus| %>
-      <tr align="center">
-        <td><%= bus.bus_type %></td>
+      <% if @buses.present? %>
+        
+        <% @buses.each do |bus| %>
+        <tr align="center">
+          <td><%= bus.bus_type %></td>
 
-        <td><%= bus.seats %></td>
-        
-        <td><%= bus.registration_number %></td>
-        
-        <td> <%= image_tag(bus.avatar.url, size: "80x50")  %> </td>
-        
-        <td><%= link_to "Edit", "/agency/#{current_agency.id}/buses/#{bus.id}/edit", class: "btn btn-default" %></td>
-        
-        <td> <%= link_to "Delete", agency_bus_path(current_agency, bus), method: :delete, data: {confirm: "Are you sure? want to delete bus"}, class: "btn btn-danger"  %> </td>
-      </tr>
+          <td><%= bus.seats %></td>
+          
+          <td><%= bus.registration_number %></td>
+          
+          <td> <%= image_tag(bus.avatar.url, size: "80x50")  %> </td>
+          
+          <td><%= link_to "Edit", "/agency/#{current_agency.id}/buses/#{bus.id}/edit", class: "btn btn-default" %></td>
+          
+          <td> <%= link_to "Delete", agency_bus_path(current_agency, bus), method: :delete, data: {confirm: "Are you sure? want to delete bus"}, class: "btn btn-danger"  %> </td>
+        </tr>
+        <% end %>
+      <%else %>
+        sdfkjsbdfhdsf
       <% end %>
     </tbody>
   </table>

@@ -5,13 +5,17 @@
 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   	<%= csrf_meta_tags %>
-  	<%= render "shared/header" %>
-  	<%= render "shared/flash_messages", flash: flash %>
+  	
+    <%= render "shared/header" %>
+  	
+    <%= render "shared/flash_messages", flash: flash %>
 </head>
 <body style="background-color:#F8E6E0">
 	<div class="container">
 		<div class="row">
-			<%= render "agencies/shared/sidebar_agency" %>
+      <% if agency_signed_in? %>
+			  <%= render "agencies/shared/sidebar_agency" %>
+      <% end %>
 			<%= yield %>
 		</div>
 	</div>

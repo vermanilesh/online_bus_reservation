@@ -47,7 +47,7 @@ class BusesController < ApplicationController
   def destroy
     @bus.destroy
     flash[:alert] = "Bus Deleted"
-    redirect_to agency_buses_path
+    redirect_to agencies_dashboard_path
   end
 
 

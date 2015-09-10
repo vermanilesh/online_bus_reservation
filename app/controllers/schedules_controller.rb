@@ -16,6 +16,8 @@ class SchedulesController < ApplicationController
         flash[:notice] = "There is no Schedule in your account, please add it first "
         redirect_to new_agency_schedule_path(current_agency)
       end
+    elsif params[:from].present? and params[:to].present? 
+      @schedules = Schedule.search(params[:from], params[:to])
     else
       @schedules = Schedule.all
     end
@@ -42,6 +44,7 @@ class SchedulesController < ApplicationController
 
 
   def update
+    binding.pry
     if @schedule.update(schedule_params)
       flash[:alert] = "Schedule Edited Succefully"
     end
@@ -52,7 +55,7 @@ class SchedulesController < ApplicationController
   def destroy
     @schedule.destroy
     flash[:alert] = "One Schedule Deleted"
-    redirect_to agency_schedules_path
+    redirect_to agencies_dashboard_path
   end
 
 

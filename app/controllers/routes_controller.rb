@@ -46,7 +46,7 @@ class RoutesController < ApplicationController
   def destroy
   	@route.destroy
     flash[:alert] = "Route Deleted"
-    redirect_to agency_routes_path
+    redirect_to agencies_dashboard_path
   end
 
   private

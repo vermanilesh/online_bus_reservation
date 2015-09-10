@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150904070012) do
+ActiveRecord::Schema.define(version: 20150909140125) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 20150904070012) do
     t.string   "route"
     t.integer  "route_id"
     t.integer  "days_mask"
+    t.string   "day"
   end
 
   add_index "schedules", ["route_id"], name: "index_schedules_on_route_id"
