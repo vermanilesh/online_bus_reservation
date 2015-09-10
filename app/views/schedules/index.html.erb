@@ -35,6 +35,7 @@
                 <%= day.titleize %> 
               <% end %>
             </td>
+            
             <% if can? :manage, schedule%>
               <td><%= link_to "Edit", "/agency/#{current_agency.id}/schedules/#{schedule.id}/edit", class: "btn btn-default" %></td>
               

@@ -12,22 +12,31 @@ ActiveAdmin.register_page "Dashboard" do
 
     # Here is an example of a simple dashboard with columns and panels.
     #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
+    columns do
 
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
-    # end
+      column do
+        panel "Info" do
+          para "Welcome to ActiveAdmin."
+        end
+      end
+
+      column do
+        panel "All Agencies" do
+          ul do
+            Agency.all.map do |agency|
+              li link_to(agency.email, admin_agency_path(agency))
+            end
+          end
+        end
+      end
+      column do
+        panel "Recent Buses" do
+          table_for Bus.all.limit(10).map do
+            column("Registration Number") { |bus| link_to(bus.registration_number, admin_bus_path(bus))}
+            column("Bus Type") { |bus| bus.bus_type}
+          end
+        end
+      end
+    end #columns
   end # content
 end

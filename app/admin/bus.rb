@@ -1,17 +1,19 @@
 ActiveAdmin.register Bus do
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end
+	permit_params :bus_type, :seats, :registration_number
 
+  index do
+    selectable_column
+    id_column
+    column :registration_number
+    column :bus_type
+    column :seats
+    column :created_at
+    column :updated_at
+    actions
+  end
 
+  index as: :grid do |bus|
+    link_to image_tag(bus.avatar.url, size: "80x50"), admin_bus_path(bus)
+  end
 end

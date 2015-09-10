@@ -12,12 +12,15 @@ class SchedulesController < ApplicationController
   def index
     if agency_signed_in?
     	@schedules = current_agency.schedules
+
       if @schedules.blank?
         flash[:notice] = "There is no Schedule in your account, please add it first "
         redirect_to new_agency_schedule_path(current_agency)
       end
+    
     elsif params[:from].present? and params[:to].present? 
       @schedules = Schedule.search(params[:from], params[:to])
+    
     else
       @schedules = Schedule.all
     end
@@ -44,7 +47,6 @@ class SchedulesController < ApplicationController
 
 
   def update
-    binding.pry
     if @schedule.update(schedule_params)
       flash[:alert] = "Schedule Edited Succefully"
     end
@@ -65,6 +67,6 @@ class SchedulesController < ApplicationController
     @schedule = current_agency.schedules.find(params[:id])
   end
 	def schedule_params
-    params.require(:schedule).permit(:departure_time, :arrival_time, :fare, :route_id, :bus_number, :days_mask)
+    params.require(:schedule).permit(:departure_time, :arrival_time, :fare, :route_id, :bus_number, :days => [])
   end
 end

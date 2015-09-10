@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909140125) do
+ActiveRecord::Schema.define(version: 20150910085909) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -126,6 +126,18 @@ ActiveRecord::Schema.define(version: 20150909140125) do
   end
 
   add_index "schedules", ["route_id"], name: "index_schedules_on_route_id"
+
+  create_table "user_profiles", force: true do |t|
+    t.string   "f_name"
+    t.string   "l_name"
+    t.integer  "mobile_number"
+    t.integer  "age"
+    t.string   "gender"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "address"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

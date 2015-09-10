@@ -11,6 +11,10 @@ OnlineBusReservation::Application.routes.draw do
     resources :schedules
   end
 
+  resources :user do
+    resources :user_profiles
+  end
+
   get "agencies/dashboard"
   get "users/dashboard"
 

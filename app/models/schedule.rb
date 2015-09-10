@@ -4,7 +4,7 @@ class Schedule < ActiveRecord::Base
 	belongs_to :route
 	belongs_to :bus
 	
-	#scope :with_day, lambda { |day| {:conditions => "days_mask & #{2**DAYS.index(day.to_s)} > 0"} }
+	#named_scope :with_day, lambda { |day| {:conditions => "days_mask & #{2**DAYS.index(day.to_s)} > 0"} }
   
   DAYS = %w[sunday monday tuesday wednesday thursday friday saterday]
   
