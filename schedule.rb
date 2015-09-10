@@ -4,7 +4,7 @@ class Schedule < ActiveRecord::Base
 	belongs_to :route
 	belongs_to :bus
 	
-	scope :with_day, lambda { |day| {:conditions => "days_mask & #{2**DAYS.index(day.to_s)} > 0"} }
+	#scope :with_day, lambda { |day| {:conditions => "days_mask & #{2**DAYS.index(day.to_s)} > 0"} }
   
   DAYS = %w[sunday monday tuesday wednesday thursday friday saterday]
   
@@ -19,6 +19,8 @@ class Schedule < ActiveRecord::Base
   def day_symbols
     days.map(&:to_sym)
   end
-  
-  
+
+  def self.search(query1, query2)
+    where(route_id: Route.where("from_station like ? and to_station like ?", "%#{query1}%", "%#{query2}%"))
+  end
 end
