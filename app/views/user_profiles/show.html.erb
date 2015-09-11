@@ -21,6 +21,11 @@
   </p>
 
   <p>
+    <strong>Date-of-Birth</strong>
+    <%= @user_profile.dob.strftime("%d-%b-%Y") %>
+  </p>
+
+  <p>
     <strong>Age</strong>
     <%= @user_profile.age %>
   </p>
@@ -28,6 +33,16 @@
   <p>
     <strong>Gender</strong>
     <%= @user_profile.gender %>
+  </p>
+
+  <p>
+    <strong>Country</strong>
+    <%= Carmen::Country.coded(@user_profile.country).name %>
+  </p>
+
+  <p>
+    <strong>State</strong>
+    <%= Carmen::Country.coded(@user_profile.country).subregions.coded(@user_profile.state).name %>
   </p>
 
   <p>

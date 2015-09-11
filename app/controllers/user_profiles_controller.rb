@@ -35,8 +35,12 @@ class UserProfilesController < ApplicationController
     redirect_to users_dashboard_path(current_user)
   end
 
+  def subregion_options
+    render partial: "state_select"
+  end
+
   private
   	def user_profile_params
-  		params.require(:user_profile).permit(:f_name, :l_name, :mobile_number, :age, :gender, :address)
+  		params.require(:user_profile).permit(:f_name, :l_name, :mobile_number, :age, :gender, :address, :country, :state, :dob)
   	end
 end

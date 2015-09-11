@@ -24,6 +24,8 @@ OnlineBusReservation::Application.routes.draw do
   get "welcome/sign_in"
   
   root "welcome#index"
+
+  get "/user_profiles/subregion_options" => "user_profiles#subregion_options"
   
   #get "welcome/index"
   

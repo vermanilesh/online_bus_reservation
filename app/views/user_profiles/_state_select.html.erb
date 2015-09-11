@@ -1,0 +1,10 @@
+<div id="user_profile_state_wrapper">
+	<% parent_region ||= params[:parent_region] %>
+  <% country = Carmen::Country.coded(parent_region)%>
+
+  <% if country.nil? %>
+    <em>please select a country above </em>
+  <% else country.subregions? %>
+    <%= subregion_select(:user_profile, :state, parent_region) %>
+  <% end %>
+</div>

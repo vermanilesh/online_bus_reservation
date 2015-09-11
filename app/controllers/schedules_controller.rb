@@ -11,18 +11,12 @@ class SchedulesController < ApplicationController
 
   def index
     if agency_signed_in?
-    	@schedules = current_agency.schedules
-
-      if @schedules.blank?
-        flash[:notice] = "There is no Schedule in your account, please add it first "
-        redirect_to new_agency_schedule_path(current_agency)
-      end
-    
+      schedule_for_agency(params[:from],params[:to])
     elsif params[:from].present? and params[:to].present? 
-      @schedules = Schedule.search(params[:from], params[:to])
-    
+      schedule_for_users
     else
-      @schedules = Schedule.all
+      flash[:error] = "please enter search words"
+      redirect_to root_path
     end
   end
 
@@ -39,6 +33,7 @@ class SchedulesController < ApplicationController
 
 	def create
 		@schedule = current_agency.schedules.new(schedule_params)
+
     if @schedule.save
       flash[:alert] = "New Schedule created"    
     end
@@ -66,7 +61,44 @@ class SchedulesController < ApplicationController
   def set_schedule
     @schedule = current_agency.schedules.find(params[:id])
   end
+
 	def schedule_params
     params.require(:schedule).permit(:departure_time, :arrival_time, :fare, :route_id, :bus_number, :days => [])
+  end
+
+  def schedule_for_agency(from, to)
+    if from.present? and to.present?
+      search_with_stations(from, to)
+    else  
+      all_schedule_for_agency        
+    end
+  end
+
+  def schedule_for_users
+    @schedules = Schedule.search(params[:from], params[:to])
+    if @schedules.blank?
+      flash[:error] = "No Schedule Matches, please enter other stations"
+      redirect_to root_path
+    end
+  end
+
+  def search_with_stations(from, to)
+    @schedules = current_agency.schedules.search(from, to)
+
+    if @schedules.blank?
+      flash[:notice] = "No Schedule Matches, You can create new"
+      redirect_to new_agency_schedule_path(current_agency)
+    end
+  end
+
+  def all_schedule_for_agency
+
+    @schedules = current_agency.schedules
+      
+    if @schedules.blank?
+
+      flash[:notice] = "There is no Schedule in your account, please add it first "
+      redirect_to new_agency_schedule_path(current_agency)
+    end
   end
 end

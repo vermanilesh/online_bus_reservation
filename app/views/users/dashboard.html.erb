@@ -1,0 +1,16 @@
+<div class="row" align="center">
+  <div class="col-md-6" align="center">  
+    <div class="jumbotron" align="center">
+      <% if current_user.sign_in_count == 1 %>
+        <h1>Hello, <%= "#{current_user.email}" %> </h1>
+      <% end %>
+      <p>
+        <strong>Welcome to your Dashboard</strong>
+      </p>
+
+      <p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      </p>
+    </div>
+  </div>
+</div>  
