@@ -1,9 +1,9 @@
 class SchedulesController < ApplicationController
 
-  before_action :authenticate_agency!, except: :index
+  before_action :authenticate_agency!, except: [:index, :search_schedules]
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
-  load_and_authorize_resource 
+  load_and_authorize_resource except: [:search_schedules]
   
   layout "sidebar_layout"
 
@@ -11,12 +11,21 @@ class SchedulesController < ApplicationController
 
   def index
     if agency_signed_in?
-      schedule_for_agency(params[:from],params[:to])
-    elsif params[:from].present? and params[:to].present? 
-      schedule_for_users
+      all_schedules_for_agency
+    end
+  end
+
+  def search_schedules
+    if params[:from].present? and params[:to].present?
+      
+      if agency_signed_in?
+        schedules_for_agency(params[:from],params[:to])
+      else
+        schedule_for_users
+      end
     else
-      flash[:error] = "please enter search words"
-      redirect_to root_path
+        flash[:error] = "please enter search words"
+        redirect_to root_path
     end
   end
 
@@ -66,12 +75,8 @@ class SchedulesController < ApplicationController
     params.require(:schedule).permit(:departure_time, :arrival_time, :fare, :route_id, :bus_number, :days => [])
   end
 
-  def schedule_for_agency(from, to)
-    if from.present? and to.present?
-      search_with_stations(from, to)
-    else  
-      all_schedule_for_agency        
-    end
+  def schedules_for_agency(from, to)
+    search_with_stations(from, to)
   end
 
   def schedule_for_users
@@ -91,8 +96,7 @@ class SchedulesController < ApplicationController
     end
   end
 
-  def all_schedule_for_agency
-
+  def all_schedules_for_agency
     @schedules = current_agency.schedules
       
     if @schedules.blank?

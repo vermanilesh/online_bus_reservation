@@ -1,10 +1,11 @@
 OnlineBusReservation::Application.routes.draw do
 
   
+  #get "reservations/new"
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get "schedules/index"
+  get "schedules/search_schedules"
   resources :agency do
     resources :buses
     resources :routes
@@ -14,6 +15,8 @@ OnlineBusReservation::Application.routes.draw do
   resources :user do
     resources :user_profiles
   end
+  
+  resources :reservations
 
   get "agencies/dashboard"
   get "users/dashboard"

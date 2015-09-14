@@ -3,6 +3,7 @@ class Schedule < ActiveRecord::Base
 	belongs_to :agency
 	belongs_to :route
 	belongs_to :bus
+  has_many :reservations
 	
 	#named_scope :with_day, lambda { |day| {:conditions => "days_mask & #{2**DAYS.index(day.to_s)} > 0"} }
   

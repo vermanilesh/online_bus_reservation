@@ -1,0 +1,31 @@
+<% if @reservations.present? %>
+  <% @reservations.each do |reservation| %>
+  	
+    <p>
+      <strong>User id</strong>
+      <%= reservation.user_id %>
+    </p>
+
+    <p>
+      <strong>Reservation id</strong>
+      <%= reservation.id %>
+    </p>
+    
+    <p>
+      <strong>no of seats </strong>
+      <%= reservation.no_of_seats %>
+    </p>
+
+    <p>
+      <strong>Journy Date </strong>
+      <%= reservation.journy_date %>
+    </p>
+
+    <p>
+      <strong>Total Fare </strong>
+      <%= reservation.fare %>
+    </p>
+  <% end %>
+<% else %>
+  <%= "there are no reservations" %>
+<% end %>

@@ -1,0 +1,28 @@
+<%= form_for(@reservation) do |f| %>
+  <div class="field" id="no_of_seats">
+    <%= f.label :no_of_seats %>
+    <%= f.number_field :no_of_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label :journy_date %>
+    <%= f.date_select(:journy_date, order: [:year, :month, :day]) %>
+  </div>
+
+
+  <div class="field" id="fare">
+    <%= f.label :fare %>
+    <%= f.number_field :fare %>
+  </div>
+
+
+  <%= f.submit %>
+<% end %>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  var seat = $("#reservation_no_of_seats").attr("value");
+  $("#reservation_fare").attr("value", (seat*100));
+})
+</script>

@@ -6,4 +6,8 @@ class Bus < ActiveRecord::Base
   has_many :schedules
 
   mount_uploader :avatar, AvatarUploader
+
+  def self.total_seats(id)
+    Bus.where(id: id).pluck("seats")[0]
+  end
 end

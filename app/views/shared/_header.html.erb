@@ -19,7 +19,7 @@
 
 
     <div class="navbar-left" style="padding-left:5px">
-      <%= form_tag(schedules_index_path, method: "get", class: "form-inline")  do %>
+      <%= form_tag(schedules_search_schedules_path, method: "get", class: "form-inline")  do %>
         <div class="form-group">
           <%= label_tag(:search, "From") %>
           <%= text_field_tag(:from, params[:from], class: "form-control") %>
