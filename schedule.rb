@@ -24,4 +24,9 @@ class Schedule < ActiveRecord::Base
   def self.search(query1, query2)
     where(route_id: Route.where("from_station like ? and to_station like ?", "%#{query1}%", "%#{query2}%"))
   end
+
+  def availabel=(availabel_seats)
+    self.availability = availabel_seats
+    self.update
+  end
 end

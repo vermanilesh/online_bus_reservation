@@ -5,6 +5,7 @@ class Reservation < ActiveRecord::Base
 
   
   def self.reserved_seats(reservations)
+    
     seats_reserved = 0
   	reservations.each do |reservation|
   		seats_reserved = seats_reserved + reservation.no_of_seats
