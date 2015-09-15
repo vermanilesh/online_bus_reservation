@@ -42,7 +42,9 @@
               <td>
                 <% if schedule.reservations.present? and Bus.where(id: schedule.bus_number.to_i).present? %>
 
-                  <%= Bus.total_seats(schedule.bus_number.to_i) - Reservation.reserved_seats(schedule.reservations)%>
+                  <% availabel_seats = Bus.total_seats(schedule.bus_number.to_i) - Reservation.reserved_seats(schedule.reservations) %>
+
+                  <%= availabel_seats %>
                 <% else %>
                 <%= Bus.total_seats(schedule.bus_number.to_i) %>
                 <% end %>
@@ -52,8 +54,11 @@
                 <td><%= link_to "Edit", "/agency/#{current_agency.id}/schedules/#{schedule.id}/edit", class: "btn btn-default" %></td>
                 
                 <td> <%= link_to "Delete", agency_schedule_path(current_agency, schedule), method: :delete, data: {confirm: "Are you sure? want to delete schedule"}, class: "btn btn-danger"  %> </td>
-              <% elsif %>
-                <td><%= link_to "Book", new_reservation_path(:schedule_id => schedule.id) , class: "btn btn-default" %></td>
+              <% elsif availabel_seats == 0 %>
+
+                <td><%= link_to "Book", new_agency_schedule_reservation_path(:agency_id => schedule.agency_id, :schedule_id => schedule.id) , class: "btn btn-default disabled" %></td>
+              <% else %>
+                <td><%= link_to "Book", new_agency_schedule_reservation_path(:agency_id => schedule.agency_id, :schedule_id => schedule.id) , class: "btn btn-default " %></td>
               <%end%>
             </tr>
           <% end %>
