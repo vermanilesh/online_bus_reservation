@@ -25,8 +25,16 @@ class Schedule < ActiveRecord::Base
     where(route_id: Route.where("from_station like ? and to_station like ?", "%#{query1}%", "%#{query2}%"))
   end
 
-  def availabel=(availabel_seats)
-    self.availability = availabel_seats
-    self.update
+  def availabel=(seats_reserved) 
+    seats_availabel = self.availability - seats_reserved
+    self.update(availability: seats_availabel)
+  end
+
+  def find_registration_number
+    Bus.where(id: self.bus_number.to_i).pluck("registration_number")[0]
+  end
+
+  def find_bus_type
+    Bus.where(id: self.bus_number.to_i).pluck("bus_type")[0]
   end
 end
