@@ -1,37 +1,48 @@
-<%= form_for(@reservation, url: agency_schedule_reservations_path) do |f| %>
-  <div class="field" id="no_of_seats">
-    <%= f.label :no_of_seats %>
-    <%= f.number_field :no_of_seats, min: 1 %>
-  </div>
+<div class="col-sm-5">  
+  <%= form_for(@reservation, url: agency_schedule_reservations_path) do |f| %>
+    <div class="form-group" >
+      <%= f.label :no_of_seats %>
+      <%= f.number_field :no_of_seats, min: 1, max: 5, class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :journy_date %>
-    <%= f.date_select(:journy_date, order: [:year, :month, :day], start_year: Date.today.year, end_year: Date.today.year) %>
-  </div>
-
-
-  <div class="field" id="fare">
-    <%= f.label :fare %>
-    <p id="fare"></p>
-  </div>
+    <div class="form-group">
+      <%= f.label :journy_date %>
+      <%= f.date_select(:journy_date, order: [:year, :month, :day], start_year: Date.today.year, end_year: Date.today.year, class: 'form-control') %>
+    </div>
 
 
-  <%= f.submit :onclick =>"return(validate_seats())"%>
-<% end %>
+    <div class="form-group" id="fare">
+      <% base_fare = Schedule.find(params[:schedule_id]).fare %>
+      <strong>Base Fare</strong>
+      <%= f.label :base_fare, value = "#{base_fare}", class: "base" %></br>
+      <%= f.label :total_fare %>
+      <%= f.text_field :fare, readonly: true, class: "form-control" %>
 
-<script type="text/javascript" language="javascript">
-  function validate_seats(){
-    if (document.getElementById('reservation_no_of_seats').value == "") {
-      alert("seats can not be blank");
-      document.getElementById('reservation_no_of_seats').focus()
-      return false;
-    } 
-    else {
-      return true
-    }      
-  }
+    </div>
 
-  document.ready(function(){
-    $("#reservation_no_of_seats").val
-  });
-</script>
+
+    <%= f.submit class: "button" %>
+  <% end %>
+
+  <script type="text/javascript" language="javascript">
+    $('#reservation_no_of_seats').on('change', function(){
+      var seats = $('#reservation_no_of_seats').val();
+      var base_fare = parseInt($('.base').text()) ;
+      var total_fare_count = seats * base_fare;
+      $('#reservation_fare').text(total_fare_count);
+      $('#reservation_fare').attr('value', total_fare_count);
+    });
+
+    $(document).on('click', '.button', function(){
+      if ($('#reservation_no_of_seats').val() === "") {
+        alert("seats can not be blank");
+        $('#reservation_no_of_seats').focus();
+        return false;
+      } 
+      else {
+
+        return true;
+      }
+    });
+  </script>
+</div>  
