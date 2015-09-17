@@ -19,7 +19,7 @@
 
       <tbody>
         <% @schedules.each do |schedule| %>
-          <% if schedule.route.present? && Bus.where(id: schedule.bus_number.to_i).present? %>
+          <% if schedule.agency.present? %>          
             <tr>
               
               <td><%= schedule.route.route_name %></td>
@@ -40,11 +40,11 @@
               </td>
 
               <td>
-                <% if schedule.availability.present? %>
-                  <%= schedule.availability %>
+                <% if schedule.availability.blank? %>
+                  <%= schedule.get_total_seats %>
                 <% else %>
-                  <%= Bus.total_seats(schedule.bus_number.to_i) %>
-                <% end %>
+                  <%= schedule.availability %>
+                  <% end %>
               </td>
               
               <% if can? :manage, schedule%>
@@ -59,10 +59,10 @@
 
                 <td><%= link_to "Book", new_agency_schedule_reservation_path(:agency_id => schedule.agency_id, :schedule_id => schedule.id) , class: "btn btn-default disabled" %></td>
               <% else %>
-                <td><%= link_to "Book", new_agency_schedule_reservation_path(:agency_id => schedule.agency_id, :schedule_id => schedule.id) , class: "btn btn-default" %></td>
+                <td><%= link_to "Book", new_agency_schedule_reservation_path(:agency_id => schedule.agency_id, :schedule_id => schedule.id) , class: "btn btn-default " %></td>
               <%end%>
             </tr>
-          <% end %>
+          <% end %> 
         <% end %>
       </tbody>
     </table>

@@ -13,12 +13,12 @@
 
   <div class="input-group">
     <%= f.label :from_station %> </br>
-    <%= f.select(:from_station, options_for_select([['Indore', "Indore"], ['Pune', "Pune"], ['Mumbai', "Mumbai"], ['Delhi', "Delhi"], ['Ujjain', "Ujjain"]]), {}, {class: "form-control"}) %>
+    <%= f.select(:from_station, options_for_select([['Indore', "Indore"], ['Pune', "Pune"], ['Mumbai', "Mumbai"], ['Delhi', "Delhi"], ['Ujjain', "Ujjain"]]), {class: "form-control"}) %>
   </div>
 
   <div class="input-group">
     <%= f.label :to_station %> </br>
-    <%= f.select(:to_station, options_for_select([['Indore', "Indore"], ['Pune', "Pune"], ['Mumbai', "Mumbai"], ['Delhi', "Delhi"], ['Ujjain', "Ujjain"]]), {}, {class: "form-control"}) %>
+    <%= f.select(:to_station, options_for_select([['Ujjain', "Ujjain"], ['Pune', "Pune"], ['Mumbai', "Mumbai"], ['Delhi', "Delhi"], ['Indore', "Indore"]]), {class: "form-control"}) %>
   </div>
 
   <div class="field">

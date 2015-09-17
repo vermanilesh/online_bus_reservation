@@ -1,52 +1,56 @@
-<div class="col-md-7">
+<div class="row">
+  <div class="col-md-3">  
+    <div class="jumbotron">
+      <p>
+        <strong>User Id:</strong>
+        <%= @user_profile.id %>
+      </p>
 
-  <p>
-    <strong>User Id:</strong>
-    <%= @user_profile.id %>
-  </p>
+      <p>
+        <strong>First Name:</strong>
+        <%= @user_profile.f_name %>
+      </p>
 
-  <p>
-    <strong>First Name:</strong>
-    <%= @user_profile.f_name %>
-  </p>
+      <p>
+        <strong>Last Name:</strong>
+        <%= @user_profile.l_name %>
+      </p>
 
-  <p>
-    <strong>Last Name:</strong>
-    <%= @user_profile.l_name %>
-  </p>
+      <p>
+        <strong>Mobile Number:</strong>
+        <%= @user_profile.mobile_number %>
+      </p>
 
-  <p>
-    <strong>Mobile Number:</strong>
-    <%= @user_profile.mobile_number %>
-  </p>
+      <p>
+        <strong>Date-of-Birth</strong>
+        <%= @user_profile.dob.strftime("%d-%b-%Y") %>
+      </p>
 
-  <p>
-    <strong>Date-of-Birth</strong>
-    <%= @user_profile.dob.strftime("%d-%b-%Y") %>
-  </p>
+      <p>
+        <strong>Age</strong>
+        <%= @user_profile.age %>
+      </p>
 
-  <p>
-    <strong>Age</strong>
-    <%= @user_profile.age %>
-  </p>
+      <p>
+        <strong>Gender</strong>
+        <%= @user_profile.gender %>
+      </p>
 
-  <p>
-    <strong>Gender</strong>
-    <%= @user_profile.gender %>
-  </p>
+      <p>
+        <strong>Country</strong>
+        <%= Carmen::Country.coded(@user_profile.country).name %>
+      </p>
 
-  <p>
-    <strong>Country</strong>
-    <%= Carmen::Country.coded(@user_profile.country).name %>
-  </p>
+      <p>
+        <strong>State</strong>
+        <%= Carmen::Country.coded(@user_profile.country).subregions.coded(@user_profile.state).name %>
+      </p>
 
-  <p>
-    <strong>State</strong>
-    <%= Carmen::Country.coded(@user_profile.country).subregions.coded(@user_profile.state).name %>
-  </p>
-
-  <p>
-    <strong>Address</strong>
-    <%= @user_profile.address %>
-  </p>
+      <p>
+        <strong>Address</strong>
+        <%= @user_profile.address %>
+      </p>
+    </div>
+  </div>
 </div>
+

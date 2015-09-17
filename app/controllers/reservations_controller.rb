@@ -1,9 +1,10 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
-  
+  after_action :send_email, only: :create
+  before_action :get_fare
   
   def new
-    @reservation = current_user.reservations.new
+    @reservation = current_user.reservations.new(fare: @schedule.fare)
   end
 
   def index
@@ -22,8 +23,16 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def send_email
+    UserMailer.reservation_email(@reservation.user).deliver
+  end
+
   private
     def reservation_params
       params.require(:reservation).permit(:no_of_seats, :fare, :journy_date, :id, :schedule_id)
+    end
+
+    def get_fare 
+      @schedule = Agency.where(id: params[:agency_id]).first.schedules.first
     end
 end
