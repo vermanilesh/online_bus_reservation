@@ -1,0 +1,22 @@
+<tr style="padding:10px">
+  <td style="padding-left:10px">Reservation Number</td>
+  <td style="padding-left:10px"><%= @reservation.id %></td>
+</tr>
+<tr style="padding:10px">
+  <td style="padding-left:10px">Total Reserved Seats</td>
+  <td style="padding-left:10px"><%= @reservation.no_of_seats %></td>  
+</tr>  
+<tr style="padding:10px">
+  <td style="padding-left:10px">Total Amount of Fare</td>
+  <td style="padding-left:10px"><%= @reservation.fare %></td>  
+</tr>
+
+<tr style="padding:10px">
+  <td style="padding-left:10px">Date of Journey</td>
+  <td style="padding-left:10px"><%= @reservation.journy_date %></td>
+</tr>
+
+<tr>
+  <td> <%= link_to "Close", reservations_index_path %>
+  </td>
+</tr>

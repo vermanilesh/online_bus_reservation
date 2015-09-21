@@ -54,7 +54,7 @@ class BusesController < ApplicationController
 
   private
     def set_bus
-      @bus = current_agency.buses.find(params[:id])
+      @bus = current_agency.buses.where(params[:id]).first
     end
 
     def bus_params

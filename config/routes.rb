@@ -10,9 +10,11 @@ OnlineBusReservation::Application.routes.draw do
     resources :buses
     resources :routes
     resources :schedules do
-      resources :reservations
+      resources :reservations, except: :index
     end
   end
+
+  get "reservations/index"
 
   resources :user do
     resources :user_profiles

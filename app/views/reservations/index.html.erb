@@ -1,31 +1,36 @@
-<% if @reservations.present? %>
-  <% @reservations.each do |reservation| %>
-  	
-    <p>
-      <strong>User id</strong>
-      <%= reservation.user_id %>
-    </p>
+<div class="row" >
+  <div class="col-md-2"></div>  
+  <div class="col-md-7">
+    <div class="panel" style="background-color:#FFB2B2">  
+      <% if @reservations.present? %>
+        <table class="table table-condensed">
+          <thead class=" color color-info">
+            <tr>
+              <th class="active">Reservation Number</th>
+              <th class="active">Amount</th>
+              <th class="active"></th>
+            </tr>
+          </thead>
+          <% @reservations.each do |reservation| %>
+            <% if reservation.present? %>
+              <tbody>  
+                <tr>
+                  <td> <%= reservation.id %> </td>
+                
+                  <td> <%= reservation.fare %> Rs. </td>
 
-    <p>
-      <strong>Reservation id</strong>
-      <%= reservation.id %>
-    </p>
-    
-    <p>
-      <strong>no of seats </strong>
-      <%= reservation.no_of_seats %>
-    </p>
+                  <td> <%= link_to "view details", agency_schedule_reservation_path(reservation.schedule.agency_id, reservation.schedule_id, reservation.id), class: "btn btn-info", remote: true%> </td>
+                </tr>
+                <tr id="show_<%= reservation.id %>" ></tr>
+              </tbody>
+            <% end %>      
+          <% end %>
+        </table>
+      <% else %>
+        <%= "there are no reservations" %>
+      <% end %>
+    </div>
+  </div>
 
-    <p>
-      <strong>Journy Date </strong>
-      <%= reservation.journy_date %>
-    </p>
-
-    <p>
-      <strong>Total Fare </strong>
-      <%= reservation.fare %>
-    </p>
-  <% end %>
-<% else %>
-  <%= "there are no reservations" %>
-<% end %>
+  
+</div>

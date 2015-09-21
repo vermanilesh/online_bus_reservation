@@ -6,7 +6,6 @@ class Reservation < ActiveRecord::Base
 
   
   def update_availabel_seats
-  	seats_reserved = self.no_of_seats
-    self.schedule.availabel = seats_reserved
+    self.schedule.availabel = self.no_of_seats
   end
 end

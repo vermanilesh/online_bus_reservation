@@ -1,0 +1,49 @@
+<div class="col-sm-5">  
+  <div class="panel" style="padding-left:10px; background-color:#99CFFF">  
+    <%= form_for(@reservation, url: agency_schedule_reservations_path) do |f| %>
+
+      <div class="form-group" >
+        <%= f.label :no_of_seats %>
+        <%= f.number_field :no_of_seats, min: 1, max: 5, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group" id="fare">
+        <% base_fare = @reservation.fare %>
+        <strong>Base Fare</strong>
+        <%= f.label :base_fare, value = "#{base_fare}", class: "base" %></br>
+        <%= f.label :total_fare %>
+        <%= f.text_field :fare, readonly: true, class: "form-control" %>
+
+      </div>
+
+      <div class="field">
+        <%= f.label :journy_date %>
+        <%= f.text_field :journy_date, data: {provide: 'datepicker'}, class: "form-control" %>
+      </div>
+
+      <%= f.submit class: "button" %>
+    <% end %>
+  </div>
+
+  <script type="text/javascript" language="javascript">
+
+    $('#reservation_no_of_seats').on('change', function(){
+      var seats = $('#reservation_no_of_seats').val();
+      var base_fare = parseInt($('.base').text()) ;
+      var total_fare_count = seats * base_fare;
+      $('#reservation_fare').attr('value', total_fare_count);
+    });
+
+    $(document).on('click', '.button', function(){
+      if ($('#reservation_no_of_seats').val() === "") {
+        alert("Seats can not be blank.");
+        $('#reservation_no_of_seats').focus();
+        return false;
+      } 
+      else {
+
+        return true;
+      }
+    });   
+  </script>
+</div>  

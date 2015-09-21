@@ -68,7 +68,7 @@ class SchedulesController < ApplicationController
 	private
 
   def set_schedule
-    @schedule = current_agency.schedules.find(params[:id])
+    @schedule = current_agency.schedules.where(params[:id]).first
   end
 
 	def schedule_params
@@ -80,8 +80,8 @@ class SchedulesController < ApplicationController
   end
 
   def schedule_for_users
-    @schedules = Schedule.search(params[:from], params[:to])
-    if @schedules.blank?
+    @schedules = Schedule.search(params[:from], params[:to]).map { |schedule| schedule if schedule.agency.present? }
+    if @schedules.first.nil?
       flash[:error] = "No Schedule Matches, please enter other stations"
       redirect_to root_path
     end

@@ -51,7 +51,7 @@ class RoutesController < ApplicationController
 
   private
     def set_routes
-      @route = current_agency.routes.find(params[:id])
+      @route = current_agency.routes.where(params[:id]).first
     end
     
     def route_params
