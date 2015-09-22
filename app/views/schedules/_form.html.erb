@@ -1,55 +1,57 @@
-<%= form_for([current_agency, @schedule]) do |f| %>
-  <% if @schedule.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+<div class="panel" style="background-color:#FF7F7F">
+  <%= form_for([current_agency, @schedule]) do |f| %>
+    <% if @schedule.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
 
-      <ul>
-      <% @schedule.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :route %><br>
-    <% routes_array = current_agency.routes.map { |route| [route.route_name, route.id] } %>
-    <%= f.select(:route_id, options_for_select(routes_array) ) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :departure_time %><br>
-    <%= f.time_select :departure_time, :default => Time.now, :ampm => true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :arrival_time %><br>
-    <%= f.time_select :arrival_time, :default => Time.now, :ampm => true %>
-  </div>
-
-
-  <div class="field">
-    <%= f.label :Bus_Number %><br>
-    <% buses_array = current_agency.buses.map { |bus| [bus.registration_number, bus.id] } %>
-    <%= f.select(:bus_number, options_for_select(buses_array) ) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :fare %><br>
-    <%= f.number_field :fare %>
-  </div>
-
-  <p>
-    <%= f.label :days %><br />
-    <% for day in Schedule::DAYS %>
-      <%= check_box_tag "schedule[days][]", day, @schedule.days.include?(day) %>
-      <%=h day.humanize %><br />
+        <ul>
+        <% @schedule.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
-    <%= hidden_field_tag "schedule[days][]", "" %>
-  </p>
+
+    <div class="field">
+      <%= f.label :route %><br>
+      <% routes_array = @schedule.get_routes %>
+      <%= f.select(:route_id, options_for_select(routes_array) ) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :departure_time %><br>
+      <%= f.time_select :departure_time, :default => Time.now, :ampm => true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :arrival_time %><br>
+      <%= f.time_select :arrival_time, :default => Time.now, :ampm => true %>
+    </div>
 
 
-  <%= f.submit class: "btn btn-info" %>
-  <%= link_to "Back", agency_schedules_path, class: "btn btn-info" %>
-  
-<% end %>
+    <div class="field">
+      <%= f.label :Bus_Number %><br>
+      <% buses_array = current_agency.buses.map { |bus| [bus.registration_number, bus.id] } %>
+      <%= f.select(:bus_id, options_for_select(buses_array) ) %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :fare %><br>
+      <%= f.number_field :fare, class: "form-control" %>
+    </div>
+
+    <p>
+      <%= f.label :days %><br />
+      <% for day in Schedule::DAYS %>
+        <%= check_box_tag "schedule[days][]", day, @schedule.days.include?(day) %>
+        <%=h day.humanize %><br />
+      <% end %>
+      <%= hidden_field_tag "schedule[days][]", "" %>
+    </p>
+
+
+    <%= f.submit class: "btn btn-info" %>
+    <%= link_to "Back", agency_schedules_path, class: "btn btn-info" %>
+    
+  <% end %>
+</div>

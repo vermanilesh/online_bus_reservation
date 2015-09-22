@@ -1,1 +1,27 @@
-<%= render "show" %>
+<div class="col-md-5">
+  <div class="panel">
+    <table id="table" class="table table-striped">
+      <tbody>
+        
+        <tr style="padding:5px">
+          <td style="padding-left:10px">Reservation Number</td>
+          <td style="padding-left:10px"><%= @reservation.id %></td>
+        </tr>
+
+        <tr style="padding:10px">
+          <td style="padding-left:10px">Total Reserved Seats</td>
+          <td style="padding-left:10px"><%= @reservation.no_of_seats %></td>
+        </tr>  
+        <tr style="padding:10px">
+          <td style="padding-left:10px">Total Amount of Fare</td>
+          <td style="padding-left:10px"><%= @reservation.fare %> Rs.</td>  
+        </tr>
+
+        <tr style="padding:10px">
+          <td style="padding-left:10px">Date of Journey</td>
+          <td style="padding-left:10px"><%= @reservation.journy_date %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>  

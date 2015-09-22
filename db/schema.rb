@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914124312) do
+ActiveRecord::Schema.define(version: 20150922114151) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -93,12 +93,10 @@ ActiveRecord::Schema.define(version: 20150914124312) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "registration_number"
-    t.integer  "route_id"
     t.string   "avatar"
   end
 
   add_index "buses", ["agency_id"], name: "index_buses_on_agency_id"
-  add_index "buses", ["route_id"], name: "index_buses_on_route_id"
 
   create_table "reservations", force: true do |t|
     t.integer  "user_id"
@@ -119,20 +117,15 @@ ActiveRecord::Schema.define(version: 20150914124312) do
     t.integer  "distance"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "agency_id"
   end
-
-  add_index "routes", ["agency_id"], name: "index_routes_on_agency_id"
 
   create_table "schedules", force: true do |t|
     t.time     "departure_time"
     t.time     "arrival_time"
     t.integer  "fare"
-    t.integer  "agency_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "bus_number"
-    t.string   "route"
+    t.integer  "bus_id",         limit: 255
     t.integer  "route_id"
     t.integer  "days_mask"
     t.string   "day"

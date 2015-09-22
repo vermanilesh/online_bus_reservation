@@ -31,29 +31,20 @@ class Schedule < ActiveRecord::Base
     if self.availability.present?
       seats_availabel = self.availability - seats_reserved #if availability column has value
     else
-      seats_availabel = Bus.total_seats(self.bus_number.to_i) - seats_reserved #if avalability is nil(in case: when schedule is created and availbaility is not stored)
+      seats_availabel = Bus.total_seats(self.bus_number.to_i) - seats_reserved #if avalability is nil(in case: when schedule was created and availbaility is not stored)
     end
       
     self.update(availability: seats_availabel)
   end
  
-  #for registration number of particular bus
-  def find_registration_number
-    Bus.where(id: self.bus_number.to_i).first.registration_number
-  end
-
-  #for getting the bus_type of particular bus
-  def find_bus_type
-    Bus.where(id: self.bus_number.to_i).pluck("bus_type")[0]
-  end
 
   #update the availability with total number of seats in the bus when schedule is created
   def set_availability
-    self.update(availability: Bus.total_seats(self.bus_number.to_i))
+    self.update(availability: self.bus.seats)
   end
 
-  #get the total number of seats for a particular bus
-  def get_total_seats
-    Bus.total_seats(self.bus_number.to_i)
+
+  def get_routes
+    @routes = Route.all.map { |route| [route.route_name, route.id] }
   end
 end

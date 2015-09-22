@@ -1,8 +1,7 @@
 class Route < ActiveRecord::Base
 	validates :from_station, :to_station, :distance, presence: true
-	has_many :buses
   has_many :schedules
-	belongs_to :agency
+  has_many :buses, through: :schedules
 	
 
 	def route_name

@@ -31,7 +31,7 @@ class SchedulesController < ApplicationController
 
 
   def new
-  	@schedule = current_agency.schedules.new
+  	@schedule = Schedule.new
   	respond_with(@schedule)
   end
 
@@ -41,7 +41,7 @@ class SchedulesController < ApplicationController
 
 
 	def create
-		@schedule = current_agency.schedules.new(schedule_params)
+		@schedule = Schedule.new(schedule_params)
 
     if @schedule.save
       flash[:alert] = "New Schedule created"    
@@ -68,11 +68,11 @@ class SchedulesController < ApplicationController
 	private
 
   def set_schedule
-    @schedule = current_agency.schedules.where(params[:id]).first
+    @schedule = Schedule.where(id: params[:id]).first
   end
 
 	def schedule_params
-    params.require(:schedule).permit(:departure_time, :arrival_time, :fare, :route_id, :bus_number, :days => [])
+    params.require(:schedule).permit(:departure_time, :arrival_time, :fare, :route_id, :bus_id, :days => [])
   end
 
   def schedules_for_agency(from, to)
@@ -80,7 +80,7 @@ class SchedulesController < ApplicationController
   end
 
   def schedule_for_users
-    @schedules = Schedule.search(params[:from], params[:to]).map { |schedule| schedule if schedule.agency.present? }
+    @schedules = Schedule.search(params[:from], params[:to]).map { |schedule| schedule if schedule.bus.agency.present? }
     if @schedules.first.nil?
       flash[:error] = "No Schedule Matches, please enter other stations"
       redirect_to root_path
@@ -88,7 +88,7 @@ class SchedulesController < ApplicationController
   end
 
   def search_with_stations(from, to)
-    @schedules = current_agency.schedules.search(from, to)
+    @schedules = Schedule.where(bus_id: Bus.where(agency_id: current_agency.id)).search(params[:from], params[:to])
 
     if @schedules.blank?
       flash[:notice] = "No Schedule Matches, You can create new"
@@ -97,7 +97,7 @@ class SchedulesController < ApplicationController
   end
 
   def all_schedules_for_agency
-    @schedules = current_agency.schedules
+    @schedules = Schedule.where(bus_id: Bus.where(agency_id: current_agency.id))
       
     if @schedules.blank?
 
