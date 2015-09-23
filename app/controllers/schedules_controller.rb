@@ -5,7 +5,7 @@ class SchedulesController < ApplicationController
 
   load_and_authorize_resource except: [:search_schedules]
   
-  layout "sidebar_layout"
+  layout "agency_layout"
 
   respond_to :html
 

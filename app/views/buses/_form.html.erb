@@ -1,39 +1,41 @@
-<div class="panel" style="background-color:#DFC5C5"> 
-  <%= form_for([current_agency, @bus]) do |f| %>
-    <% if @bus.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@bus.errors.count, "error") %> prohibited this bus from being saved:</h2>
+<div class="col-md-8">
+  <div class="panel" style="background-color:#DFC5C5; padding-left:4px"> 
+    <%= form_for([current_agency, @bus]) do |f| %>
+      <% if @bus.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@bus.errors.count, "error") %> prohibited this bus from being saved:</h2>
 
-        <ul>
-        <% @bus.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
+          <ul>
+          <% @bus.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="input-group">
+        <%= f.label :bus_type %> </br>
+        <%= f.select(:bus_type, options_for_select([['AC', "AC"], ['NON-AC', "NON-AC"], ['AC-SLEEPER', "AC-SLEEPER"], ['NON-AC-SLEEPER', "NON-AC-SLEPPER"], ['VOLVO', "VOLVO"]]), {class: "form-control"}) %>
       </div>
+
+      <div class="form-group">
+        <%= f.label :seats %><br>
+        <%= f.number_field :seats, min: 20, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :Registration_Number %><br>
+        <%= f.text_field :registration_number, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :Upload_image %><br>
+        <%= f.file_field :avatar %>
+      </div>
+
+      <%= f.submit class: "btn btn-info" %>
+      <%= link_to "Back", agency_buses_path, class: "btn btn-info" %>
+      
     <% end %>
-
-    <div class="input-group">
-      <%= f.label :bus_type %> </br>
-      <%= f.select(:bus_type, options_for_select([['AC', "AC"], ['NON-AC', "NON-AC"], ['AC-SLEEPER', "AC-SLEEPER"], ['NON-AC-SLEEPER', "NON-AC-SLEPPER"], ['VOLVO', "VOLVO"]]), {class: "form-control"}) %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :seats %><br>
-      <%= f.number_field :seats, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :Registration_Number %><br>
-      <%= f.text_field :registration_number, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :Upload_image %><br>
-      <%= f.file_field :avatar %>
-    </div>
-
-    <%= f.submit class: "btn btn-info" %>
-    <%= link_to "Back", agency_buses_path, class: "btn btn-info" %>
-    
-  <% end %>
-</div>
+  </div>
+</div>  

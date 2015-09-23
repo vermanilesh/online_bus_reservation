@@ -1,7 +1,7 @@
 class AgenciesController < ApplicationController
 	
 	before_action :authenticate_agency!
-  layout "sidebar_layout"
+  layout "agency_layout"
 
   def dashboard
   end

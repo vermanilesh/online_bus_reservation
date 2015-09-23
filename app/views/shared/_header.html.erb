@@ -2,24 +2,20 @@
   <div class="top-bar">
     <div class="container">
       <div class="row">
-        <div class="col-sm-6 col-xs-4">
-          <div class="top-number"><p><i class="fa fa-phone-square"></i>  +0123 456 70 90</p></div>
-        </div>
-        <div class="col-sm-6 col-xs-8">
-          <div class="social">
-            <ul class="social-share">
-              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fa fa-linkedin"></i></a></li> 
-              <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-              <li><a href="#"><i class="fa fa-skype"></i></a></li>
-            </ul>
-            <div class="search">
-              <form role="form">
-              <input type="text" class="search-form" autocomplete="off" placeholder="Search">
-              <i class="fa fa-search"></i>
-              </form>
-            </div>
+          <div class="input-group">
+            <%= form_tag(schedules_search_schedules_path, method: "get") do %>
+              <div class="row">
+                <div class="col-lg-5">
+                  <input id="from" type="text" placeholder="From" name="from" class="form-control">
+                </div>
+                <div class="col-lg-5">
+                  <input id="to" type="text" placeholder="To" name="to" class="form-control">
+                </div>
+                <div class="col-lg-2">
+                  <%= submit_tag "Search", class: "btn btn-default" %>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -35,26 +31,60 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="logo"></a>
+        <a class="navbar-brand" href="/"><img src="logo.gif" alt="Bus"></a>
       </div>
 
       <div class="collapse navbar-collapse navbar-right">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="about-us.html">About Us</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="blog-item.html">Blog Single</a></li>
-              <li><a href="pricing.html">Pricing</a></li>
-              <li><a href="404.html">404</a></li>
-              <li><a href="shortcodes.html">Shortcodes</a></li>
-            </ul>
-          </li>
-          <li><a href="blog.html">Blog</a></li> 
-          <li><a href="contact-us.html">Contact</a></li>                        
+          <% if user_signed_in? %>
+            <li class="active"><a href="/users/dashboard">Home</a></li>
+            <li><a href="<%= reservations_index_path %>">Your Reservations</a></li>
+            <li><a href="<%= welcome_services_path %>">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %></a>
+              <ul class="dropdown-menu">
+                <li><a href="<%= user_user_profile_path(current_user.id, current_user.user_profile.id) %>">View Profile</a></li>
+                <li><a href=" <%= edit_user_user_profile_path(current_user.id, current_user.user_profile.id) %>">Edit Profile</a></li>
+                <li><a href="<%= destroy_user_session_path %>">Sign out</a></li>
+                <li><a href="#">Shortcodes</a></li>
+              </ul>
+            </li>  
+          <% elsif agency_signed_in? %>
+            <li class="active"><a href="/agencies/dashboard">Home</a></li>
+            <li><a href="<%= agency_buses_path(current_agency.id) %>">Your Buses</a></li>
+            <li><a href="<%= welcome_services_path %>">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_agency.email %> </a>
+              <ul class="dropdown-menu">
+                <li><a href="<%= agencies_dashboard_path %>">View Profile</a></li>
+                <li><a href="<%= destroy_agency_session_path %>">Sign out</a></li>
+                <li><a href="#">Shortcodes</a></li>
+              </ul>
+            </li>
+          <% else %>  
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="<%= welcome_about_us_path %>">About Us</a></li>
+            <li><a href="<%= welcome_services_path %>">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Sign up </a>
+              <ul class="dropdown-menu">
+                <li><a href="<%= new_agency_registration_path %>">Agency</a></li>
+                <li><a href=" <%= new_user_registration_path %>">User</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Sign in </a>
+              <ul class="dropdown-menu">
+                <li><a href="<%= new_agency_session_path %>">Agency</a></li>
+                <li><a href=" <%= new_user_session_path %>">User</a></li>
+              </ul>
+            </li>
+          <% end %>
+          <li><a href="#">Blog</a></li> 
+          <li><a href="#">Contact</a></li>                        
         </ul>
       </div>
     </div><!--/.container-->

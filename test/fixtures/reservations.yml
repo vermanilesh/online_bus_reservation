@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  schedule_id: 
+  no_of_seats: 1
+  fare: 1
+  journy_date: 2015-09-12
+
+two:
+  user_id: 
+  schedule_id: 
+  no_of_seats: 1
+  fare: 1
+  journy_date: 2015-09-12

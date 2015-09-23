@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Online Bus Reservation</title>
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  	<%= csrf_meta_tags %>
+</head>
+<body class="homepage">
+  <%= render "shared/header" %>
+  <%= render "shared/flash_messages", flash: flash %>
+	<div class="container">
+		<div class="row">
+      <% if agency_signed_in? %>
+			  <%= render "agencies/shared/sidebar_agency" %>
+      <% end %>
+			  <%= yield %>
+		</div>
+	</div>
+  <%= render "shared/footer" %>
+</body>
+</html>

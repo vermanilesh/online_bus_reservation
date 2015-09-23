@@ -5,7 +5,7 @@ class RoutesController < ApplicationController
 
   load_and_authorize_resource
   
-  layout "sidebar_layout"
+  layout "agency_layout"
 
   respond_to :html
   

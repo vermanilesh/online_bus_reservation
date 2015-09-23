@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
   after_action :send_email, only: :create
-  before_action :get_schedule, except: :index
+  
 
   respond_to :html, :js
   
@@ -33,10 +33,6 @@ class ReservationsController < ApplicationController
   private
     def reservation_params
       params.require(:reservation).permit(:no_of_seats, :fare, :journy_date, :schedule_id)
-    end
-
-    def get_schedule 
-      @schedule = Agency.where(id: params[:agency_id]).first.schedules.first
     end
 
     def get_date

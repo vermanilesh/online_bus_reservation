@@ -39,8 +39,20 @@ gem 'carrierwave'
 #using image versions
 gem 'mini_magick'
 
+#Using for Authorization
+gem 'cancancan', '~> 1.10'
+
 #For Active Admin
 gem 'activeadmin' , github: 'activeadmin'
+
+#For Country and State Select
+gem 'carmen-rails', '~> 1.0.0'
+
+#For Calendar 
+gem 'bootstrap-datepicker-rails'
+
+#for date picker
+gem 'jquery-ui-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

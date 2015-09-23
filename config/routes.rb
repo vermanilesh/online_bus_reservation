@@ -2,6 +2,12 @@ OnlineBusReservation::Application.routes.draw do
 
   
   #get "reservations/new"
+
+  get "welcome/sign_up"
+  get "welcome/sign_in"
+  get "welcome/about_us"
+  get "welcome/services"
+  
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -27,8 +33,7 @@ OnlineBusReservation::Application.routes.draw do
 
   devise_for :agencies 
   
-  get "welcome/sign_up"
-  get "welcome/sign_in"
+
   
   root "welcome#index"
 

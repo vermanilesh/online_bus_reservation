@@ -15,7 +15,7 @@
     <div class="field">
       <%= f.label :route %><br>
       <% routes_array = @schedule.get_routes %>
-      <%= f.select(:route_id, options_for_select(routes_array) ) %>
+      <%= f.select(:route_id, options_for_select(routes_array), class: "form-control" ) %>
     </div>
 
     <div class="field">
@@ -37,7 +37,7 @@
 
     <div class="form-group">
       <%= f.label :fare %><br>
-      <%= f.number_field :fare, class: "form-control" %>
+      <%= f.number_field :fare, class: "form-control", min: 1 %>
     </div>
 
     <p>
