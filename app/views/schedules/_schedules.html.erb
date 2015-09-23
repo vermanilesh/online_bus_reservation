@@ -54,12 +54,12 @@
                 <td> <%= link_to "Delete", agency_schedule_path(current_agency, schedule), method: :delete, data: {confirm: "Are you sure? want to delete schedule"}, class: "btn btn-danger"  %> </td>
               <% elsif schedule.availability.blank? %>
 
-                <td><%= link_to "Book", new_agency_schedule_reservation_path(:agency_id => schedule.agency_id, :schedule_id => schedule.id) , class: "btn btn-default " %></td>
+                <td><%= link_to "Book", new_agency_schedule_reservation_path(:agency_id => schedule.bus.agency_id, :schedule_id => schedule.id) , class: "btn btn-default " %></td>
               <% elsif schedule.availability.zero?%>
 
-                <td><%= link_to "Book", new_agency_schedule_reservation_path(:agency_id => schedule.agency_id, :schedule_id => schedule.id) , class: "btn btn-default disabled" %></td>
+                <td><%= link_to "Book", new_agency_schedule_reservation_path(:agency_id => schedule.bus.agency_id, :schedule_id => schedule.id) , class: "btn btn-default disabled" %></td>
               <% else %>
-                <td><%= link_to "Book", new_agency_schedule_reservation_path(:agency_id => schedule.agency_id, :schedule_id => schedule.id) , class: "btn btn-default " %></td>
+                <td><%= link_to "Book", new_agency_schedule_reservation_path(:agency_id => schedule.bus.agency_id, :schedule_id => schedule.id) , class: "btn btn-default " %></td>
               <%end%>
             </tr>
           <% end %> 

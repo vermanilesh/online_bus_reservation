@@ -80,8 +80,8 @@ class SchedulesController < ApplicationController
   end
 
   def schedule_for_users
-    @schedules = Schedule.search(params[:from], params[:to]).map { |schedule| schedule if schedule.bus.agency.present? }
-    if @schedules.first.nil?
+    @schedules = Schedule.search(params[:from], params[:to]).map { |schedule| schedule if schedule.present? }
+    if @schedules.nil?
       flash[:error] = "No Schedule Matches, please enter other stations"
       redirect_to root_path
     end

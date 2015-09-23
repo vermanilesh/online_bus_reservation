@@ -9,13 +9,13 @@
   
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
   </script>
-  <%= render "shared/header" %>
-  
-  <%= render "shared/flash_messages" %>
 </head>
 
 
-<body style="background-color:#F8E6E0" >
+<body class="homepage">  
+  <%= render "shared/header" %>
+  <%= render "shared/flash_messages" %>
   <%= yield %>
+  <%= render "shared/footer" %>
 </body>
 </html>

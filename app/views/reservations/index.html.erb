@@ -19,7 +19,7 @@
                 
                   <td> <%= reservation.fare %> Rs. </td>
 
-                  <td> <%= link_to "view details", agency_schedule_reservation_path(reservation.schedule.agency_id, reservation.schedule_id, reservation.id), class: "btn btn-info", remote: true%> </td>
+                  <td> <%= link_to "view details", agency_schedule_reservation_path(reservation.schedule.bus.agency_id, reservation.schedule_id, reservation.id), class: "btn btn-info", remote: true%> </td>
                 </tr>
                 <tr id="show_<%= reservation.id %>" ></tr>
               </tbody>

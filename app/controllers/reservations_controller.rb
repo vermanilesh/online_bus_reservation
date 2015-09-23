@@ -10,7 +10,7 @@ class ReservationsController < ApplicationController
   end
 
   def index
-    @reservations = current_user.reservations.map { |reservation| reservation if reservation.schedule.present? and reservation.schedule.agency.present?  }
+    @reservations = current_user.reservations.map { |reservation| reservation if reservation.schedule.present? }
   end
 
   def show
