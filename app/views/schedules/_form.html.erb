@@ -44,7 +44,7 @@
       <%= f.label :days %><br />
       <% for day in Schedule::DAYS %>
         <%= check_box_tag "schedule[days][]", day, @schedule.days.include?(day) %>
-        <%=h day.humanize %><br />
+        <%= day.humanize %><br />
       <% end %>
       <%= hidden_field_tag "schedule[days][]", "" %>
     </p>
