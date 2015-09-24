@@ -4,21 +4,29 @@
     <tr style="padding:5px">
       <td style="padding-left:10px">Reservation Number</td>
       <td style="padding-left:10px"><%= @reservation.id %></td>
-      <td style="padding-left:300px"><button id='close_<%= @reservation.id %>' class="btn btn-info btn-sm" >close</button> </td>
+      <td>Route</td>
+      <td><%= @reservation.get_route_name %></td>
+      <td style="padding-left:10px"><button id='close_<%= @reservation.id %>' class="btn btn-info btn-sm" >X</button> </td>
     </tr>
 
     <tr style="padding:10px">
       <td style="padding-left:10px">Total Reserved Seats</td>
       <td style="padding-left:10px"><%= @reservation.no_of_seats %></td>
+      <td>Bus Registration Number</td>
+      <td><%= @reservation.get_registration_number %></td>
     </tr>  
     <tr style="padding:10px">
       <td style="padding-left:10px">Total Amount of Fare</td>
-      <td style="padding-left:10px"><%= @reservation.fare %></td>  
+      <td style="padding-left:10px"><%= @reservation.fare %></td>
+      <td>Departure at </td>
+      <td><%= @reservation.dep_time %></td>  
     </tr>
 
     <tr style="padding:10px">
       <td style="padding-left:10px">Date of Journey</td>
       <td style="padding-left:10px"><%= @reservation.journy_date %></td>
+      <td> Arrival at </td>
+      <td><%= @reservation.arr_time %></td>
     </tr>
   </tbody>
 </table>

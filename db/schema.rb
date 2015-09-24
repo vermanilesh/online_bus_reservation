@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922114151) do
+ActiveRecord::Schema.define(version: 20150924113044) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20150922114151) do
     t.integer  "user_id"
     t.integer  "schedule_id"
     t.integer  "no_of_seats"
-    t.integer  "fare"
+    t.float    "fare"
     t.date     "journy_date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -122,13 +122,12 @@ ActiveRecord::Schema.define(version: 20150922114151) do
   create_table "schedules", force: true do |t|
     t.time     "departure_time"
     t.time     "arrival_time"
-    t.integer  "fare"
+    t.float    "fare"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "bus_id",         limit: 255
     t.integer  "route_id"
     t.integer  "days_mask"
-    t.string   "day"
     t.integer  "availability"
   end
 

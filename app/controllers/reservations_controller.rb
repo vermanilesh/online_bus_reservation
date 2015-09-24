@@ -1,6 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
   after_action :send_email, only: :create
+  before_action :get_schedule, except: :index
   
 
   respond_to :html, :js
@@ -37,5 +38,9 @@ class ReservationsController < ApplicationController
 
     def get_date
       date = DateTime.strptime(reservation_params[:journy_date], "%m/%d/%Y")
+    end
+
+    def get_schedule 
+      @schedule = Schedule.where(id: params[:schedule_id]).first
     end
 end

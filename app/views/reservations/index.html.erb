@@ -12,7 +12,7 @@
             </tr>
           </thead>
           <% @reservations.each do |reservation| %>
-            <% if reservation.present? %>
+            <% if reservation.present? and reservation.schedule.route.present? %>
               <tbody>  
                 <tr>
                   <td> <%= reservation.id %> </td>
