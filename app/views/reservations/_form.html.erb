@@ -2,6 +2,13 @@
   <div class="panel" style="padding-left:10px; background-color:#99CFFF">  
     <%= form_for(@reservation, url: agency_schedule_reservations_path) do |f| %>
 
+      <div class="form-group">
+        <%= f.label :date %>
+        <%= f.text_field :journy_date, data: {provide: 'datepicker'}, required: :required %>
+        <img width="30px" height="30px" src="/assets/calendar-icon.png">
+      </div>
+
+
       <div class="form-group" >
         <%= f.label :no_of_seats %>
         <%= f.number_field :no_of_seats, min: 1, max: 5, class: 'form-control' %>
@@ -16,10 +23,6 @@
 
       </div>
 
-      <div class="field">
-        <%= f.label :journy_date %>
-        <%= f.text_field :journy_date, data: {provide: 'datepicker'}, class: "form-control" %>
-      </div>
 
       <%= f.submit class: "button" %>
     <% end %>

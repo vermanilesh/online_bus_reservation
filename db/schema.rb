@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150924113044) do
+ActiveRecord::Schema.define(version: 20150925102940) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20150924113044) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "agency_name"
+    t.string   "owner_name"
   end
 
   add_index "agencies", ["email"], name: "index_agencies_on_email", unique: true
