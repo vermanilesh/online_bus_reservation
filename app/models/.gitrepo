@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/vermanilesh/online_bus_reservation_subrepo.git
+	branch = editable
+	commit = 92adcb7f16cf385df267d41fc4185d71457e30f0
+	parent = 9c174c9dec382d4344dceb5f61de6cb8b1cf1b86
+	cmdver = 0.3.1
